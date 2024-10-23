@@ -10,4 +10,9 @@ class HomeController extends Controller
     {
         return view('frontend.home');
     }
+
+    public function freeSms()
+    {
+        return view('frontend.free-sms');
+    }
 }
