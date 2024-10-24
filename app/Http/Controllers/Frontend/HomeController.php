@@ -15,4 +15,18 @@ class HomeController extends Controller
     {
         return view('frontend.free-sms');
     }
+
+    public function pricing()
+    {
+        return view('frontend.pricing');
+    }
+    public function services()
+    {
+        return view('frontend.services');
+    }
+
+    public function contactUs()
+    {
+        return view('frontend.contact-us');
+    }
 }

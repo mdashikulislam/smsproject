@@ -18,5 +18,6 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/slick-theme.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/assets/css/sal.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/assets/css/app.css')}}" />
+    @livewireStyles
     @stack('style')
 </head>

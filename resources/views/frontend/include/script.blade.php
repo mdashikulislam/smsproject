@@ -6,7 +6,7 @@
 <script src="{{asset('frontend/assets/js/js.cookie.js')}}"></script>
 <script src="{{asset('frontend/assets/js/jquery.style.switcher.js')}}"></script>
 <script src="{{asset('frontend/assets/js/tilt.js')}}"></script>
-<script src="{{asset('frontend/assets/js/odometer.min.js')}}"></script>
 <script src="{{asset('frontend/assets/js/jquery.nav.js')}}"></script>
 <script src="{{asset('frontend/assets/js/app.js')}}"></script>
 @stack('script')
+@livewireScripts

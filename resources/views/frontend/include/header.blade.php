@@ -1,10 +1,13 @@
+@php
+    $currentRoute = \Illuminate\Support\Facades\Route::currentRouteName();
+@endphp
 <header class="header sms-header header-style-2">
     <div id="sms-sticky-placeholder"></div>
     <div class="sms-mainmenu">
         <div class="container">
             <div class="header-navbar">
                 <div class="header-logo">
-                    <a href="{{route('index')}}">
+                    <a wire:navigate href="{{route('index')}}">
                         <img
                             src="{{asset('frontend/assets/images/logo.svg')}}"
                             alt="logo"
@@ -35,36 +38,36 @@
                         </div>
                         <ul class="mainmenu">
                             <li>
-                                <a href="{{route('index')}}"> Home </a>
+                                <a class="{{$currentRoute == 'index' ? 'active':''}}" wire:navigate href="{{route('index')}}"> Home </a>
                             </li>
                             <li>
-                                <a href="{{route('free-sms')}}">
+                                <a class="{{$currentRoute == 'free-sms' ? 'active':''}}"  wire:navigate href="{{route('free-sms')}}">
                                     Free SMS
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('pricing')}}"> Pricing </a>
+                                <a class="{{$currentRoute == 'pricing' ? 'active':''}}" wire:navigate href="{{route('pricing')}}"> Pricing </a>
                             </li>
                             <li>
-                                <a href="{{route('services')}}">
+                                <a class="{{$currentRoute == 'services' ? 'active':''}}" wire:navigate href="{{route('services')}}">
                                     Services
                                 </a>
                             </li>
                             <li>
-                                <a href="{{route('contact-us')}}">Contact</a>
+                                <a class="{{$currentRoute == 'contact-us' ? 'active':''}}" wire:navigate href="{{route('contact-us')}}">Contact</a>
                             </li>
                             @guest
                                 @if(Route::has('login'))
                                     <li class="auth-btn">
-                                        <a class="login" href="{{route('login')}}">
+                                        <a  wire:navigate class="login {{$currentRoute == 'login' ? 'active':''}}" href="{{route('login')}}">
                                             Login
                                         </a>
                                     </li>
                                 @endif
                                 @if(Route::has('register'))
                                     <li class="auth-btn">
-                                        <a
-                                            class="signup"
+                                        <a  wire:navigate
+                                            class="signup {{$currentRoute == 'register' ? 'active':''}}"
                                             href="{{route('register')}}"
                                         >
                                             Signup
