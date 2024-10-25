@@ -6,10 +6,7 @@
 <a href="#main-wrapper" id="backto-top" class="back-to-top">
     <i class="far fa-angle-double-up"></i>
 </a>
-
-<!-- Preloader Start Here -->
 <div id="preloader"></div>
-
 <div id="main-wrapper" class="main-wrapper">
     @include('frontend.include.header')
     {{$slot}}

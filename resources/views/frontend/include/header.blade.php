@@ -20,7 +20,7 @@
                         <div class="d-block d-lg-none">
                             <div class="mobile-nav-header">
                                 <div class="mobile-nav-logo">
-                                    <a href="{{route('index')}}">
+                                    <a wire:navigate href="{{route('index')}}">
                                         <img
                                             class="light-mode"
                                             src="{{asset('frontend/assets/images/logo-2.svg')}}"
@@ -30,8 +30,7 @@
                                 </div>
                                 <button
                                     class="mobile-menu-close"
-                                    data-bs-dismiss="offcanvas"
-                                >
+                                    data-bs-dismiss="offcanvas">
                                     <i class="fas fa-times"></i>
                                 </button>
                             </div>
@@ -74,6 +73,8 @@
                                         </a>
                                     </li>
                                 @endif
+                            @else
+                               @livewire('auth.logout')
                             @endguest
 
                         </ul>
