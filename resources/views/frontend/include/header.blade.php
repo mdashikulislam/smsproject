@@ -64,6 +64,7 @@
                                     </li>
                                 @endif
                                 @if(Route::has('register'))
+
                                     <li class="auth-btn">
                                         <a  wire:navigate
                                             class="signup {{$currentRoute == 'register' ? 'active':''}}"
@@ -74,6 +75,13 @@
                                     </li>
                                 @endif
                             @else
+                                <li class="auth-btn">
+                                    <a
+                                        href="{{route('admin.dashboard')}}"
+                                    >
+                                        Dashboard
+                                    </a>
+                                </li>
                                @livewire('auth.logout')
                             @endguest
 

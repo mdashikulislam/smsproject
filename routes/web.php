@@ -10,12 +10,9 @@ Route::middleware('guest')->group(function (){
 
 
 Route::get('/',\App\Livewire\Frontend\Home::class)->name('index');
-
-Route::controller(\App\Http\Controllers\Frontend\HomeController::class)->group(function (){
-    Route::get('free-sms','freeSms')->name('free-sms');
-    Route::get('pricing','pricing')->name('pricing');
-    Route::get('services','services')->name('services');
-    Route::get('contact-us','contactUs')->name('contact-us');
-});
+Route::get('free-sms',\App\Livewire\Frontend\FreeSms::class)->name('free-sms');
+Route::get('pricing',\App\Livewire\Frontend\Pricing::class)->name('pricing');
+Route::get('services',\App\Livewire\Frontend\Services::class)->name('services');
+Route::get('contact-us',\App\Livewire\Frontend\ContactUs::class)->name('contact-us');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

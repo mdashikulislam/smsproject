@@ -6,9 +6,15 @@ use Livewire\Component;
 
 class Register extends Component
 {
-    public $pageTitle = "Register";
+    public $seoTitle;
+
+    public function mount()
+    {
+        $this->seoTitle = "Register";
+    }
+
     public function render()
     {
-        return view('livewire.auth.register')->layout(FRONTEND_LAYOUT,['title' => $this->pageTitle]);
+        return view('livewire.auth.register', ['seoTitle' => $this->seoTitle]);
     }
 }

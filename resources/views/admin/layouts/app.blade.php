@@ -4,35 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <title>NobleUI - HTML Bootstrap 5 Admin Dashboard Template</title>
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- End fonts -->
-    <!-- core:css -->
-    <link rel="stylesheet" href="{{asset('admin/assets/vendors/core/core.css')}}">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{asset('admin/assets/vendors/flatpickr/flatpickr.min.css')}}">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{{asset('admin/assets/fonts/feather-font/css/iconfont.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/assets/vendors/flag-icon-css/css/flag-icon.min.css')}}">
-    <!-- endinject -->
-    <!-- Layout styles -->
-    <link rel="stylesheet" href="{{asset('admin/assets/css/demo2/style.css')}}">
-    <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" />
+    <link rel="stylesheet" href="{{asset('admin/assets/vendors/core/core.css')}}" data-navigate-track>
+    <link rel="stylesheet" href="{{asset('admin/assets/vendors/flatpickr/flatpickr.min.css')}}" data-navigate-track>
+    <link rel="stylesheet" href="{{asset('admin/assets/fonts/feather-font/css/iconfont.css')}}" data-navigate-track>
+    <link rel="stylesheet" href="{{asset('admin/assets/vendors/flag-icon-css/css/flag-icon.min.css')}}" data-navigate-track>
+    <link rel="stylesheet" href="{{asset('admin/assets/css/demo2/style.css')}}" data-navigate-track>
+    <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" data-navigate-track/>
+    @livewireStyles
     @stack('style')
 </head>
 <body>
 <div class="main-wrapper">
     @include('admin.include.sidebar')
     <div class="page-wrapper">
-        <!-- partial:partials/_navbar.html -->
         <nav class="navbar">
             <a href="#" class="sidebar-toggler">
                 <i data-feather="menu"></i>
@@ -260,7 +248,6 @@
                 </ul>
             </div>
         </nav>
-        <!-- partial -->
         <div class="page-content">
             @section('content')
             @show
@@ -272,20 +259,18 @@
     </div>
 </div>
 
-<!-- core:js -->
-<script src="{{asset('admin/assets/vendors/core/core.js')}}"></script>
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="{{asset('admin/assets/vendors/flatpickr/flatpickr.min.js')}}"></script>
-<script src="{{asset('admin/assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
+<script src="{{asset('admin/assets/vendors/core/core.js')}}" data-navigate-track></script>
+<script src="{{asset('admin/assets/vendors/flatpickr/flatpickr.min.js')}}" data-navigate-track></script>
+<script src="{{asset('admin/assets/vendors/apexcharts/apexcharts.min.js')}}" data-navigate-track></script>
 <!-- End plugin js for this page -->
 <!-- inject:js -->
-<script src="{{asset('admin/assets/vendors/feather-icons/feather.min.js')}}"></script>
-<script src="{{asset('admin/assets/js/template.js')}}"></script>
+<script src="{{asset('admin/assets/vendors/feather-icons/feather.min.js')}}" data-navigate-track></script>
+<script src="{{asset('admin/assets/js/template.js')}}" data-navigate-track></script>
 <!-- endinject -->
 <!-- Custom js for this page -->
-<script src="{{asset('admin/assets/js/dashboard-dark.js')}}"></script>
+<script src="{{asset('admin/assets/js/dashboard-dark.js')}}" data-navigate-track></script>
 <!-- End custom js for this page -->
+@livewireScripts
 @stack('script')
 </body>
 </html>

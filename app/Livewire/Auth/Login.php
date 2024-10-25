@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Livewire\Auth;
-
 use App\Models\User;
 use Livewire\Component;
 
@@ -22,7 +20,7 @@ class Login extends Component
         if(auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
             $user = User::where(["email" => $this->email])->first();
             auth()->login($user, $this->remember_me);
-            return $this->redirect(route('admin.dashboard'), navigate: true);
+            return $this->redirect(route('admin.dashboard'), navigate: false);
         }
         else{
             return $this->addError('email', trans('auth.failed'));

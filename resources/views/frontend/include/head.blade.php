@@ -1,9 +1,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-{{--    <title>@yield('title') | {{env('APP_NAME')}}</title>--}}
-    <title>{{ @$title}} | {{env('APP_NAME')}}</title>
-    <meta name="description" content="" />
+    <title>{{ @$seoTitle}} | {{env('APP_NAME')}}</title>
+    @if(isset($seoDescription))
+        <meta name="description" content="{{$seoDescription}}">
+    @endif
+    @if(isset($seoKeyword))
+        <meta name="keywords" content="{{$seoKeyword}}">
+    @endif
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
