@@ -11,5 +11,4 @@ Route::controller(\App\Http\Controllers\Frontend\HomeController::class)->group(f
 });
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

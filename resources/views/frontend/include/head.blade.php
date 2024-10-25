@@ -1,7 +1,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>@yield('title') | {{env('APP_NAME')}}</title>
+{{--    <title>@yield('title') | {{env('APP_NAME')}}</title>--}}
+    <title>{{ @$title}} | {{env('APP_NAME')}}</title>
     <meta name="description" content="" />
     <meta
         name="viewport"

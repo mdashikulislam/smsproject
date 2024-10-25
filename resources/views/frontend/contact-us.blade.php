@@ -1,6 +1,4 @@
-@extends('frontend.layouts.app')
-@section('title','Contact Us')
-@section('content')
+<x-frontend-layout title="Contact Us">
     <div class="breadcrum-area">
         <div class="container">
             <div class="breadcrumb">
@@ -144,4 +142,4 @@
             </li>
         </ul>
     </section>
-@endsection
+</x-frontend-layout>

@@ -1,6 +1,4 @@
-@extends('frontend.layouts.app')
-@section('title','Home')
-@section('content')
+<x-frontend-layout title="Home">
     <section class="banner banner-style-1">
         <div class="container">
             <div class="row align-items-end align-items-xl-center">
@@ -424,4 +422,4 @@
             </li>
         </ul>
     </section>
-@endsection
+</x-frontend-layout>

@@ -8,5 +8,6 @@
 <script src="{{asset('frontend/assets/js/tilt.js')}}"></script>
 <script src="{{asset('frontend/assets/js/jquery.nav.js')}}"></script>
 <script src="{{asset('frontend/assets/js/app.js')}}"></script>
-@stack('script')
 @livewireScripts
+@stack('script')
+

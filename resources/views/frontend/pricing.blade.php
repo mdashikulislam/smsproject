@@ -1,6 +1,4 @@
-@extends('frontend.layouts.app')
-@section('title','Pricing')
-@section('content')
+<x-frontend-layout title="Pricing">
     <div class="breadcrum-area">
         <div class="container">
             <div class="breadcrumb">
@@ -283,14 +281,15 @@
             </li>
         </ul>
     </section>
-@endsection
-@push('style')
-    <style>
-        .pricing-table .pricing-body li:before{
-            content:""
-        }
-        .pricing-table .pricing-body li{
-            padding-left: 0;
-        }
-    </style>
-@endpush
+    @push('style')
+        <style>
+            .pricing-table .pricing-body li:before{
+                content:""
+            }
+            .pricing-table .pricing-body li{
+                padding-left: 0;
+            }
+        </style>
+    @endpush
+</x-frontend-layout>
+

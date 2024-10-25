@@ -1,6 +1,4 @@
-@extends('frontend.layouts.app')
-@section('title','Free Sms')
-@section('content')
+<x-frontend-layout title="Free Sms">
     <section class="section section-padding-2 bg-color-dark">
         <div class="container">
             <div class="section-heading heading-light-left">
@@ -207,4 +205,4 @@
             </li>
         </ul>
     </section>
-@endsection
+</x-frontend-layout>

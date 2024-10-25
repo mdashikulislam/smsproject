@@ -12,8 +12,7 @@
 
 <div id="main-wrapper" class="main-wrapper">
     @include('frontend.include.header')
-    @section('content')
-    @show
+    {{$slot}}
     @include('frontend.include.footer')
 </div>
 
