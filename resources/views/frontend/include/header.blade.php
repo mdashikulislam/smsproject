@@ -64,7 +64,6 @@
                                     </li>
                                 @endif
                                 @if(Route::has('register'))
-
                                     <li class="auth-btn">
                                         <a  wire:navigate
                                             class="signup {{$currentRoute == 'register' ? 'active':''}}"

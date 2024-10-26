@@ -9,6 +9,7 @@ class Login extends Component
     public $email;
     public $password;
     public $remember_me;
+
     protected $rules = [
         'email' => ['required','email','string'],
         'password' => ['required','min:8'],
@@ -20,7 +21,7 @@ class Login extends Component
         if(auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
             $user = User::where(["email" => $this->email])->first();
             auth()->login($user, $this->remember_me);
-            return $this->redirect(route('admin.dashboard'), navigate: false);
+            return $this->redirect(route('admin.dashboard'), navigate: true);
         }
         else{
             return $this->addError('email', trans('auth.failed'));
@@ -28,6 +29,6 @@ class Login extends Component
     }
     public function render()
     {
-        return view('livewire.auth.login')->layout(FRONTEND_LAYOUT,['title' => $this->pageTitle]);
+        return view('livewire.auth.login')->layout(FRONTEND_LAYOUT,['seoTitle' => $this->pageTitle]);
     }
 }

@@ -1,3 +1,4 @@
+@livewireScripts
 <!-- Jquery Js -->
 <script src="{{asset('frontend/assets/js/jquery-3.6.0.min.js')}}"></script>
 <script src="{{asset('frontend/assets/js/bootstrap.min.js')}}"></script>
@@ -8,6 +9,6 @@
 <script src="{{asset('frontend/assets/js/tilt.js')}}"></script>
 <script src="{{asset('frontend/assets/js/jquery.nav.js')}}"></script>
 <script src="{{asset('frontend/assets/js/app.js')}}"></script>
-@livewireScripts
+
 @stack('script')
 

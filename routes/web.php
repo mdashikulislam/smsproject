@@ -8,11 +8,9 @@ Route::middleware('guest')->group(function (){
    Route::get('register',Register::class)->name('register');
 });
 
-
 Route::get('/',\App\Livewire\Frontend\Home::class)->name('index');
 Route::get('free-sms',\App\Livewire\Frontend\FreeSms::class)->name('free-sms');
 Route::get('pricing',\App\Livewire\Frontend\Pricing::class)->name('pricing');
 Route::get('services',\App\Livewire\Frontend\Services::class)->name('services');
 Route::get('contact-us',\App\Livewire\Frontend\ContactUs::class)->name('contact-us');
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
