@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NobleUI - HTML Bootstrap 5 Admin Dashboard Template</title>
+    <title>@yield('title') | {{env('APP_NAME')}}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -86,14 +86,9 @@
 <script src="{{asset('admin/assets/vendors/core/core.js')}}" data-navigate-track></script>
 <script src="{{asset('admin/assets/vendors/flatpickr/flatpickr.min.js')}}" data-navigate-track></script>
 <script src="{{asset('admin/assets/vendors/apexcharts/apexcharts.min.js')}}" data-navigate-track></script>
-<!-- End plugin js for this page -->
-<!-- inject:js -->
 <script src="{{asset('admin/assets/vendors/feather-icons/feather.min.js')}}" data-navigate-track></script>
 <script src="{{asset('admin/assets/js/template.js')}}" data-navigate-track></script>
-<!-- endinject -->
-<!-- Custom js for this page -->
 <script src="{{asset('admin/assets/js/dashboard-dark.js')}}" data-navigate-track></script>
-<!-- End custom js for this page -->
 @livewireScripts
 @stack('script')
 </body>
