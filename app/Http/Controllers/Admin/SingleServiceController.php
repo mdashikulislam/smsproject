@@ -12,7 +12,6 @@ class SingleServiceController extends Controller
     {
         if (request()->ajax()){
             return DataTables::of(SingleService::query())
-
                 ->make(true);
         }
         return view('admin.single-service.index');

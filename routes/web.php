@@ -14,3 +14,4 @@ Route::get('pricing',\App\Livewire\Frontend\Pricing::class)->name('pricing');
 Route::get('services',\App\Livewire\Frontend\Services::class)->name('services');
 Route::get('contact-us',\App\Livewire\Frontend\ContactUs::class)->name('contact-us');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

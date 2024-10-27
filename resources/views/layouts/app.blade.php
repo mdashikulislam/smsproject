@@ -8,7 +8,8 @@
 </a>
 <div id="main-wrapper" class="main-wrapper">
     @include('frontend.include.header')
-    {{$slot}}
+    {{@$slot}}
+    @section('content')@show
     @include('frontend.include.footer')
 </div>
 

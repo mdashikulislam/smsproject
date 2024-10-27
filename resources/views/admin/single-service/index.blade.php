@@ -11,7 +11,10 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Single Service</h3>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3>Single Service</h3>
+                        <a href="" class="btn btn-primary btn-sm btn-icon-text"><i class="btn-icon-prepend"  data-feather="plus"></i>Add New</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class="table">
