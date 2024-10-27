@@ -4,7 +4,7 @@
 
 <body class="sticky-header">
 <a href="#main-wrapper" id="backto-top" class="back-to-top">
-    <i class="far fa-angle-double-up"></i>
+    <i class="fas fa-angle-double-up"></i>
 </a>
 <div id="preloader"></div>
 <div id="main-wrapper" class="main-wrapper">
@@ -12,7 +12,6 @@
     {{$slot}}
     @include('frontend.include.footer')
 </div>
-
 @include('frontend.include.script')
 </body>
 </html>

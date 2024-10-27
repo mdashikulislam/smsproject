@@ -7,7 +7,21 @@ use Livewire\Component;
 
 class Services extends Component
 {
-    public $search;
+    public $search = '';
+    public $state = [];
+    public function buy(SingleService $singleService)
+    {
+        $this->state = $singleService->toArray();
+        $this->dispatch('buy-modal');
+    }
+
+    public function mount()
+    {
+        $this->state = [
+            'name'=>'',
+            'price'=>''
+        ];
+    }
     public function render()
     {
         $services = SingleService::where('status', STATUS_ENABLED);
