@@ -4,12 +4,16 @@ namespace App\Livewire\Admin;
 
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Yajra\DataTables\DataTables;
 use \App\Models\SingleService as SingleServiceModel;
 class SingleService extends Component
 {
+    use WithPagination;
     public $showEditModal = false;
     public $state = [];
+    public $itemId = 0;
+    protected $listeners = ['delete'];
     public function addNew()
     {
         $this->showEditModal = false;
@@ -46,8 +50,41 @@ class SingleService extends Component
     public function edit(SingleServiceModel $singleService)
     {
         $this->showEditModal = true;
+        $this->itemId = $singleService->id;
         $this->state = $singleService->toArray();
         $this->dispatch('show-modal', id: 'curdModal');
+    }
+
+    public function update()
+    {
+        $services = SingleServiceModel::where('id',$this->itemId)->first();
+        if (empty($services)){
+            $this->dispatch('hide-modal',id:'curdModal');
+            $this->dispatch('toast',type:'error',message:'Service Not found');
+            return;
+        }
+        $validator = Validator::make($this->state, [
+            'name' => ['required', 'string','max:255','unique:single_services,name,'.$services->id],
+            'price' => ['required', 'numeric','min:0.01'],
+        ])->validate();
+        $update = $services->update($this->state);
+        if ($update){
+            $this->dispatch('hide-modal',id:'curdModal');
+            $this->dispatch('toast',type:'success',message:'Service updated successfully');
+            $this->mount();
+        }else{
+            $this->dispatch('toast',type:'error',message:'Service not updated');
+        }
+    }
+
+    public function delete(SingleServiceModel $singleService)
+    {
+       $delete = $singleService->delete();
+       if ($delete){
+           $this->dispatch('toast',type:'success',message:'Service deleted successfully');
+       }else{
+           $this->dispatch('toast',type:'error',message:'Service not deleted');
+       }
     }
     public function dataTable()
     {
@@ -64,6 +101,10 @@ class SingleService extends Component
     }
     public function render()
     {
-        return view('livewire.admin.single-service')->layout(ADMIN_LAYOUT);
+        return view('livewire.admin.single-service')
+            ->layout(ADMIN_LAYOUT)
+            ->with([
+                'services' => SingleServiceModel::orderByDesc('id')->paginate(10)
+            ]);
     }
 }

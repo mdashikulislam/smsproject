@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <h3>Single Service</h3>
-                        <a href="" wire:click.prevent="addNew" class="btn btn-primary btn-sm btn-icon-text"><i class="btn-icon-prepend"  data-feather="plus"></i>Add New</a>
+                        <a href="" wire:click.prevent="addNew" class="btn btn-primary btn-sm btn-icon-text"><i class="fas fa-plus fa-fw" ></i>Add New</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -29,16 +29,36 @@
                         </tr>
                         </thead>
                         <tbody>
-
+                            @forelse($services as $service)
+                                <tr>
+                                    <td>{{$service->id}}</td>
+                                    <td>{{$service->name}}</td>
+                                    <td>£{{$service->price}}</td>
+                                    <td>{{$service->from_filter}}</td>
+                                    <td>{{$service->message_filter}}</td>
+                                    <td>{!! getYesNoLabel($service->is_other_site) !!}</td>
+                                    <td>{!! getStatusLabel($service->status) !!}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a   href='#' wire:click.prevent='edit({{$service->id}})' class='btn btn-sm btn-warning text-white'> <i class='fas fa-edit'></i></a>
+                                            <a   href='#' onclick="confirmDelete({{ $service->id }})" class='btn btn-sm btn-danger text-white'><i class='fas fa-trash'></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                            @endforelse
                         </tbody>
                     </table>
+                    <div class="mt-3">
+                        {{$services->links()}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div wire:ignore.self class="modal fade" id="curdModal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form wire:submit.prevent="store" autocomplete="off">
+            <form wire:submit.prevent="{{$showEditModal ? 'update':'store'}}" autocomplete="off">
                 @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -57,21 +77,21 @@
                             <label class="form-label">Price</label>
                             <input type="number" step="any" wire:model="state.price" class="form-control @error('price') is-invalid @enderror">
                             @error('price')
-                            <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
+                                <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">From (Filter) </label>
                             <input type="text"  wire:model="state.from_filter" class="form-control @error('from_filter') is-invalid @enderror">
                             @error('from_filter')
-                            <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
+                                <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Message (Filter)</label>
                             <input type="text"  wire:model="state.message_filter" class="form-control @error('message_filter') is-invalid @enderror">
                             @error('message_filter')
-                            <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
+                                <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
@@ -86,13 +106,19 @@
                                 {!! getStatusDropdown() !!}
                             </select>
                             @error('status')
-                            <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
+                                <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
                             @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">
+                            @if($showEditModal)
+                                Update
+                            @else
+                                Save
+                            @endif
+                        </button>
                     </div>
             </div>
             </form>
@@ -118,7 +144,7 @@
 
         });
         function fillTable(){
-            $('table').DataTable({
+            $('tables').DataTable({
                 processing: true,
                 serverSide: true,
                 "aLengthMenu": [

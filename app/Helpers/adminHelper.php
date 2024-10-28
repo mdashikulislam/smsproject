@@ -24,3 +24,12 @@ function getStatusDropdown($selected = 0)
     }
     return $html;
 }
+
+function getYesNoLabel($value)
+{
+    return ($value == '1') ? '<span class="badge bg-success">Yes</span>' : '<span class="badge bg-danger">No</span>';
+}
+function getStatusLabel($value)
+{
+    return ($value == '1') ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>';
+}
