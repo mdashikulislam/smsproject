@@ -21,7 +21,7 @@
             </div>
             <ul class="service-wrapper">
                 @forelse($services as $service)
-                    <li>
+                    <li wire:key="{{$service->id}}">
                         <div class="single-service-wrap">
                             <h4>
                                 <a href="/from/anster">{{$service->name}}</a>

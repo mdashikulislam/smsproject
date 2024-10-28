@@ -29,18 +29,12 @@
                             </div>
                             <div class="mb-3" style="width: 200px;">
                                 <select class="form-control" wire:model="itemsPerPage">
-                                    <option value="" disabled selected>Items per page</option>
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
+                                    {!! getDatatableShowItemDropdown() !!}
                                 </select>
                             </div>
                         </div>
-
-                        <!-- Search input aligned to the right -->
                         <div class="mb-3" style="width: 300px;">
-                            <input class="form-control" type="text" wire:model.debounce.500="search" placeholder="Search">
+                            <input class="form-control" type="text" wire:model.live.debounce.500="search" placeholder="Search">
                         </div>
                     </div>
 
@@ -59,7 +53,7 @@
                         </thead>
                         <tbody>
                             @forelse($services as $service)
-                                <tr>
+                                <tr wire:key="{{$service->id}}">
                                     <td>{{$service->id}}</td>
                                     <td>{{$service->name}}</td>
                                     <td>£{{$service->price}}</td>
@@ -75,6 +69,9 @@
                                     </td>
                                 </tr>
                             @empty
+                                <t>
+                                    <td colspan="8" class="text-center">No record found</td>
+                                </t>
                             @endforelse
                         </tbody>
                     </table>

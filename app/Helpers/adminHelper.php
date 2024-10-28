@@ -24,6 +24,19 @@ function getStatusDropdown($selected = 0)
     }
     return $html;
 }
+function getDatatableShowItemDropdown($selected = 0)
+{
+    $html = '';
+    foreach (DATATABLE_SHOW_ITEM_ARRAY as $key => $value) {
+        $html .='<option value="'.$key.'"';
+        if ($selected == $key) {
+            $html .='selected';
+        }
+        $html .='>'.$value.'</option>';
+    }
+    return $html;
+}
+
 
 function getYesNoLabel($value)
 {

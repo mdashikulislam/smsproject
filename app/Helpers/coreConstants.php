@@ -10,3 +10,5 @@ const STATUS_ARRAY = [
     1 =>'Active',
     0 =>'Inactive',
 ];
+
+const DATATABLE_SHOW_ITEM_ARRAY = [10, 20, 50, 100, 500];

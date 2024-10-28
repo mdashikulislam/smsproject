@@ -14,13 +14,27 @@ class SingleService extends Component
     public $state = [];
     public $itemId = 0;
     protected $listeners = ['delete'];
+
+    //For Datatable
+    public $perPage = 10;
+    public $sortBy = 'updated_at';
+    public $orderBy = 'DESC';
+    public $search = '';
+    public $checked = [];
+    public $is_checked_all = false;
+    public $action = '';
+
+
     public function addNew()
     {
         $this->showEditModal = false;
         $this->dispatch('show-modal', id: 'curdModal');
         //$this->dispatch('reloadTable');
     }
-
+    public function getServicesProperty()
+    {
+        return SingleServiceModel::query()->get();
+    }
     public function mount(){
         $this->state = [
             'name' => '',
@@ -99,12 +113,28 @@ class SingleService extends Component
             ->rawColumns(['action'])
             ->make(true);
     }
+
+    public function getData()
+    {
+        return SingleServiceModel::orderByDesc('id')
+            ->when(!empty($this->search), function ($query) {
+                $query->where(function ($query) {
+                    $query->where('name', 'LIKE', "%{$this->search}%")
+                        ->orWhere('id', $this->search)
+                        ->orWhere('price', 'LIKE', "%{$this->search}%")
+                        ->orWhere('from_filter', 'LIKE', "%{$this->search}%")
+                        ->orWhere('message_filter', 'LIKE', "%{$this->search}%");
+                });
+            })
+            ->paginate(10);
+    }
+
     public function render()
     {
         return view('livewire.admin.single-service')
             ->layout(ADMIN_LAYOUT,['seoTitle'=>'Single Service'])
             ->with([
-                'services' => SingleServiceModel::orderByDesc('id')->paginate(10)
+                'services' => $this->getData()
             ]);
     }
 }
