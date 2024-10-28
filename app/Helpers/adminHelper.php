@@ -26,10 +26,10 @@ function getStatusDropdown($selected = 0)
 }
 function getDatatableShowItemDropdown($selected = 0)
 {
-    $html = '';
+    $html = '<option value="" disabled selected>Show Entries</option>';
     foreach (DATATABLE_SHOW_ITEM_ARRAY as $key => $value) {
-        $html .='<option value="'.$key.'"';
-        if ($selected == $key) {
+        $html .='<option value="'.$value.'"';
+        if ($selected == $value) {
             $html .='selected';
         }
         $html .='>'.$value.'</option>';

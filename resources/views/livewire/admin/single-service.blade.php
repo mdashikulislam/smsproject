@@ -19,19 +19,15 @@
                         <div class="d-flex" style="gap: 1rem;">
                             <!-- Adjust width for the left select dropdowns -->
                             <div class="mb-3" style="width: 150px;">
-                                <select class="form-control" wire:model="perPage">
-                                    <option value="" disabled selected>Per page</option>
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </div>
-                            <div class="mb-3" style="width: 200px;">
-                                <select class="form-control" wire:model="itemsPerPage">
+                                <select class="form-control" wire:model.live="perPage">
                                     {!! getDatatableShowItemDropdown() !!}
                                 </select>
                             </div>
+                            @if($isDeleteActive)
+                            <div class="mb-3" style="width: 200px;">
+                                <a href="#" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i>Delete</a>
+                            </div>
+                            @endif
                         </div>
                         <div class="mb-3" style="width: 300px;">
                             <input class="form-control" type="text" wire:model.live.debounce.500="search" placeholder="Search">
@@ -41,7 +37,15 @@
                     <table class="table" >
                         <thead>
                         <tr>
-                            <th>#</th>
+                            <th>
+                                <div class="flex items-center">
+                                    <input id="checkbox-all" type="checkbox" wire:model.live="is_checked_all"
+                                           wire:change="checkAll"
+                                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="checkbox-all" class="sr-only">checkbox</label>
+                                </div>
+                            </th>
+                            <th>Id</th>
                             <th>Name</th>
                             <th>Price</th>
                             <th>From ( Filter )</th>
@@ -54,6 +58,12 @@
                         <tbody>
                             @forelse($services as $service)
                                 <tr wire:key="{{$service->id}}">
+                                    <td>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" wire:model.live="checked" value="{{ $service->id }}" wire:change="singleCheck"
+                                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        </div>
+                                    </td>
                                     <td>{{$service->id}}</td>
                                     <td>{{$service->name}}</td>
                                     <td>£{{$service->price}}</td>
@@ -70,7 +80,7 @@
                                 </tr>
                             @empty
                                 <t>
-                                    <td colspan="8" class="text-center">No record found</td>
+                                    <td colspan="9" class="text-center">No record found</td>
                                 </t>
                             @endforelse
                         </tbody>

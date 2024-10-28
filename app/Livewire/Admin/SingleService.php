@@ -13,7 +13,7 @@ class SingleService extends Component
     public $showEditModal = false;
     public $state = [];
     public $itemId = 0;
-    protected $listeners = ['delete'];
+    protected $listeners = ['delete','singleCheck'];
 
     //For Datatable
     public $perPage = 10;
@@ -23,17 +23,13 @@ class SingleService extends Component
     public $checked = [];
     public $is_checked_all = false;
     public $action = '';
-
+    public $isDeleteActive = false;
 
     public function addNew()
     {
         $this->showEditModal = false;
         $this->dispatch('show-modal', id: 'curdModal');
         //$this->dispatch('reloadTable');
-    }
-    public function getServicesProperty()
-    {
-        return SingleServiceModel::query()->get();
     }
     public function mount(){
         $this->state = [
@@ -126,9 +122,28 @@ class SingleService extends Component
                         ->orWhere('message_filter', 'LIKE', "%{$this->search}%");
                 });
             })
-            ->paginate(10);
+            ->paginate($this->perPage);
     }
 
+    public function checkAll()
+    {
+        if ($this->is_checked_all) {
+            $this->isDeleteActive = true;
+            $this->checked = $this->getData()->pluck('id')->all();
+        } else {
+            $this->isDeleteActive = false;
+            $this->checked = [];
+        }
+    }
+
+    public function singleCheck()
+    {
+        if (!empty($this->checked)){
+            $this->isDeleteActive = true;
+        }else{
+            $this->isDeleteActive = false;
+        }
+    }
     public function render()
     {
         return view('livewire.admin.single-service')
