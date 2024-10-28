@@ -9,11 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/core/core.css')}}" data-navigate-track>
+    <link rel="stylesheet" href="{{asset('admin/assets/vendors/sweetalert2/sweetalert2.min.css')}}" data-navigate-track>
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/flatpickr/flatpickr.min.css')}}" data-navigate-track>
     <link rel="stylesheet" href="{{asset('admin/assets/fonts/feather-font/css/iconfont.css')}}" data-navigate-track>
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/flag-icon-css/css/flag-icon.min.css')}}" data-navigate-track>
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo2/style.css')}}" data-navigate-track>
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" data-navigate-track/>
+
     @livewireStyles
     @stack('style')
 </head>
@@ -86,16 +88,39 @@
 <script src="{{asset('admin/assets/vendors/flatpickr/flatpickr.min.js')}}" data-navigate-track></script>
 <script src="{{asset('admin/assets/vendors/apexcharts/apexcharts.min.js')}}" data-navigate-track></script>
 <script src="{{asset('admin/assets/vendors/feather-icons/feather.min.js')}}" data-navigate-track></script>
+<script src="{{asset('admin/assets/vendors/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{asset('admin/assets/js/template.js')}}" data-navigate-track></script>
 <script src="{{asset('admin/assets/js/dashboard-dark.js')}}" data-navigate-track></script>
 @livewireScripts
 
 @stack('script')
 <script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+    console.log('as')
     document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('show-modal', event => {
-            $(`#${event.detail[0]['id']}`).modal('show');
+            $(`#${event.detail.id}`).modal('show');
         });
+        window.addEventListener('hide-modal', event => {
+            $(`#${event.detail.id}`).modal('hide');
+        });
+        window.addEventListener('toast',event =>{
+            console.log(event)
+            Toast.fire({
+                icon: event.detail.type,
+                title: event.detail.message
+            });
+        })
     });
 
 </script>

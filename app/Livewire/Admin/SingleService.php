@@ -13,21 +13,54 @@ class SingleService extends Component
     public function addNew()
     {
         $this->showEditModal = false;
-        $this->dispatch('show-modal',['id'=>'curdModal']);
+        $this->dispatch('show-modal', id: 'curdModal');
         //$this->dispatch('reloadTable');
     }
 
+    public function mount(){
+        $this->state = [
+            'name' => '',
+            'price' => '',
+            'from_filter' => '',
+            'message_filter' => '',
+            'is_other_site' => 0,
+            'status' => 1,
+        ];
+    }
     public function store()
     {
         $validator = Validator::make($this->state, [
             'name' => ['required', 'string','max:255','unique:single_services,name'],
             'price' => ['required', 'numeric','min:0.01'],
         ])->validate();
-        
+        $services = SingleServiceModel::create($this->state);
+        if ($services){
+            $this->dispatch('hide-modal',id:'curdModal');
+            $this->dispatch('toast',type:'success',message:'Service create successfully');
+            $this->mount();
+        }else{
+            $this->dispatch('toast',type:'error',message:'Service not created');
+        }
+    }
+
+    public function edit(SingleServiceModel $singleService)
+    {
+        $this->showEditModal = true;
+        $this->state = $singleService->toArray();
+        $this->dispatch('show-modal', id: 'curdModal');
     }
     public function dataTable()
     {
-        return DataTables::of(SingleServiceModel::query())->make(true);
+        return DataTables::of(SingleServiceModel::query())
+            ->addColumn('action',function ($q){
+                $html = '<div class="btn-group">';
+                $html .= "<a   href='#' wire:click.prevent='edit({$q->id})' class='btn btn-sm btn-warning text-white'> <i class='fas fa-edit'></i></a>";
+                $html .= "<a   href='#' class='btn btn-sm btn-danger text-white'><i class='fas fa-trash'></i></a>";
+                $html .= "</div>";
+                return $html;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
     public function render()
     {

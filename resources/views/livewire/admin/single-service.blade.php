@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table" >
                         <thead>
                         <tr>
                             <th>#</th>
@@ -25,6 +25,7 @@
                             <th>Message ( Filter )	</th>
                             <th>Is Other Site</th>
                             <th>Is Preset</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -81,9 +82,12 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Status</label>
-                            <select class="form-control" wire:model="state.status">
+                            <select class="form-control @error('status') is-invalid @enderror" wire:model="state.status">
                                 {!! getStatusDropdown() !!}
                             </select>
+                            @error('status')
+                            <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -99,6 +103,7 @@
 
 @push('style')
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 @endpush
 @push('script')
     <script src="{{asset('admin/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
@@ -160,6 +165,13 @@
                         data: 'status',
                         name: 'status',
                         defaultContent: "",
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        defaultContent: "",
+                        searchable: false
                     }
                 ],
                 columnDefs:[
