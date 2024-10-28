@@ -102,7 +102,7 @@ class SingleService extends Component
     public function render()
     {
         return view('livewire.admin.single-service')
-            ->layout(ADMIN_LAYOUT)
+            ->layout(ADMIN_LAYOUT,['seoTitle'=>'Single Service'])
             ->with([
                 'services' => SingleServiceModel::orderByDesc('id')->paginate(10)
             ]);

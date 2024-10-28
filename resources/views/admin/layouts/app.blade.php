@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title') | {{env('APP_NAME')}}</title>
+    <title>{{@$seoTitle}}| {{env('APP_NAME')}}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/flag-icon-css/css/flag-icon.min.css')}}" data-navigate-track>
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo2/style.css')}}" data-navigate-track>
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" data-navigate-track/>
-
     @livewireStyles
     @stack('style')
 </head>
@@ -62,12 +61,7 @@
                                         <span>Switch User</span>
                                     </a>
                                 </li>
-                                <li class="dropdown-item py-2">
-                                    <a href="javascript:;" class="text-body ms-0">
-                                        <i class="me-2 icon-md" data-feather="log-out"></i>
-                                        <span>Log Out</span>
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>
                     </li>
@@ -95,17 +89,8 @@
 
 @stack('script')
 <script>
-    const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
-    });
+
+
     document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('show-modal', event => {
             $(`#${event.detail.id}`).modal('show');
@@ -114,14 +99,24 @@
             $(`#${event.detail.id}`).modal('hide');
         });
         window.addEventListener('toast',event =>{
-            console.log(event)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
             Toast.fire({
                 icon: event.detail.type,
                 title: event.detail.message
             });
         });
-
     });
+
     function confirmDelete(id){
         Swal.fire({
             title: 'Are you sure?',

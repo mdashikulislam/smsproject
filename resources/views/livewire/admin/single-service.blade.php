@@ -1,7 +1,7 @@
 <div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-arrwo">
-            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a wire:navigate href="{{route('admin.dashboard')}}">Dashboard</a></li>
             <li class="breadcrumb-item active" aria-current="page">Single Service</li>
         </ol>
     </nav>
@@ -15,6 +15,35 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex" style="gap: 1rem;">
+                            <!-- Adjust width for the left select dropdowns -->
+                            <div class="mb-3" style="width: 150px;">
+                                <select class="form-control" wire:model="perPage">
+                                    <option value="" disabled selected>Per page</option>
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                            <div class="mb-3" style="width: 200px;">
+                                <select class="form-control" wire:model="itemsPerPage">
+                                    <option value="" disabled selected>Items per page</option>
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Search input aligned to the right -->
+                        <div class="mb-3" style="width: 300px;">
+                            <input class="form-control" type="text" wire:model.debounce.500="search" placeholder="Search">
+                        </div>
+                    </div>
+
                     <table class="table" >
                         <thead>
                         <tr>
