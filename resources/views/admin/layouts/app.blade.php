@@ -73,8 +73,7 @@
             </div>
         </nav>
         <div class="page-content">
-            @section('content')
-            @show
+            {{@$slot}}
         </div>
         <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
             <p class="text-muted mb-1 mb-md-0">Copyright © 2022 <a href="https://www.nobleui.com" target="_blank">NobleUI</a>.</p>
@@ -90,6 +89,15 @@
 <script src="{{asset('admin/assets/js/template.js')}}" data-navigate-track></script>
 <script src="{{asset('admin/assets/js/dashboard-dark.js')}}" data-navigate-track></script>
 @livewireScripts
+
 @stack('script')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.addEventListener('show-modal', event => {
+            $(`#${event.detail[0]['id']}`).modal('show');
+        });
+    });
+
+</script>
 </body>
 </html>

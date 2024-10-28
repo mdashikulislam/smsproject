@@ -12,9 +12,15 @@
     <div class="sidebar-body">
         <ul class="nav">
             <li class="nav-item">
-                <a  href="{{route('admin.dashboard')}}" class="nav-link">
+                <a wire:navigate  href="{{route('admin.dashboard')}}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a wire:navigate  href="{{route('admin.single-service')}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Single Service</span>
                 </a>
             </li>
             <li class="nav-item">
