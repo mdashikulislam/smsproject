@@ -14,7 +14,7 @@ class SingleService extends Component
     public $showEditModal = false;
     public $state = [];
     public $itemId = 0;
-    protected $listeners = ['delete','bulkDestroy'];
+    protected $listeners = ['delete'];
 
     //For Datatable
     public function __construct()

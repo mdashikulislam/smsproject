@@ -11,10 +11,21 @@ trait CustomDatatable
     public $checked = [];
     public $is_checked_all = false;
     public $isDeleteActive = false;
-
+    protected $traitListeners = [
+        'bulkDestroy' => 'bulkDestroy',
+    ];
+    public function initListeners()
+    {
+        if (property_exists($this, 'listeners')) {
+            $this->listeners = array_merge($this->listeners, $this->traitListeners);
+        } else {
+            $this->listeners = $this->traitListeners;
+        }
+    }
     public function setModel($model)
     {
         $this->model = $model;
+        $this->initListeners();
     }
     // Optional method that runs after mount if desired
     public function initTrait()
