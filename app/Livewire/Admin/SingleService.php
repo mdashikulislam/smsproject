@@ -108,11 +108,10 @@ class SingleService extends Component
             ->rawColumns(['action'])
             ->make(true);
     }
-    
+
     public function getData()
     {
-        return SingleServiceModel::orderByDesc('id')
-            ->when(!empty($this->search), function ($query) {
+        return SingleServiceModel::when(!empty($this->search), function ($query) {
                 $query->where(function ($query) {
                     $query->search('name', $this->search)
                         ->orSearch('id', $this->search)
@@ -124,7 +123,6 @@ class SingleService extends Component
             ->orderBy($this->sortBy, $this->orderBy)
             ->paginate($this->perPage);
     }
-
 
     public function render()
     {

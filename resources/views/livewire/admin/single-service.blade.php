@@ -45,13 +45,27 @@
                                     <label for="checkbox-all" class="sr-only">checkbox</label>
                                 </div>
                             </th>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>From ( Filter )</th>
-                            <th>Message ( Filter )	</th>
-                            <th>Is Other Site</th>
-                            <th>Is Preset</th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Id','name'=>'id'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Name','name'=>'name'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Price','name'=>'price'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'From ( Filter )','name'=>'from_filter'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Message ( Filter )','name'=>'message_filter'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Is Other Site','name'=>'is_other_site'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Status','name'=>'status'])
+                            </th>
                             <th>Action</th>
                         </tr>
                         </thead>

@@ -5,7 +5,7 @@ trait CustomDatatable
 {
     public $model;
     public $perPage = 10;
-    public $sortBy = 'updated_at';
+    public $sortBy = 'id';
     public $orderBy = 'DESC';
     public $search = '';
     public $checked = [];
@@ -61,8 +61,9 @@ trait CustomDatatable
         }
         return $this->model::query()->orderBy($this->sortBy, $this->orderBy)->paginate($this->perPage);
     }
-    public function sortBy($field)
+    public function sortByColumn($field)
     {
+
         if ($this->sortBy === $field) {
             $this->orderBy = $this->orderBy === 'ASC' ? 'DESC' : 'ASC';
         } else {
