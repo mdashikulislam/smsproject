@@ -14,6 +14,13 @@ trait CustomDatatable
     protected $traitListeners = [
         'bulkDestroy' => 'bulkDestroy',
     ];
+    public function initTrait()
+    {
+        // Optional method that runs after mount if desired
+        if (method_exists($this, 'init')) {
+            $this->init();
+        }
+    }
     public function initListeners()
     {
         if (property_exists($this, 'listeners')) {
@@ -26,13 +33,6 @@ trait CustomDatatable
     {
         $this->model = $model;
         $this->initListeners();
-    }
-    // Optional method that runs after mount if desired
-    public function initTrait()
-    {
-        if (method_exists($this, 'init')) {
-            $this->init();
-        }
     }
 
     public function checkAll()
