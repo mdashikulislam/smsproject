@@ -82,5 +82,14 @@ trait CustomDatatable
             $this->dispatch('toast',type:'error',message:'Service not deleted');
         }
     }
-
+    //Livewire hooks
+    public function updating($name, $value)
+    {
+        switch ($name) {
+            case 'search':
+            case 'perPage':
+                $this->resetPage();
+                break;
+        }
+    }
 }

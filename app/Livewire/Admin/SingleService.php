@@ -108,19 +108,20 @@ class SingleService extends Component
             ->rawColumns(['action'])
             ->make(true);
     }
-
+    
     public function getData()
     {
         return SingleServiceModel::orderByDesc('id')
             ->when(!empty($this->search), function ($query) {
                 $query->where(function ($query) {
-                    $query->where('name', 'LIKE', "%{$this->search}%")
-                        ->orWhere('id', $this->search)
-                        ->orWhere('price', 'LIKE', "%{$this->search}%")
-                        ->orWhere('from_filter', 'LIKE', "%{$this->search}%")
-                        ->orWhere('message_filter', 'LIKE', "%{$this->search}%");
+                    $query->search('name', $this->search)
+                        ->orSearch('id', $this->search)
+                        ->orSearch('price', $this->search)
+                        ->orSearch('from_filter', $this->search)
+                        ->orSearch('message_filter', $this->search);
                 });
             })
+            ->orderBy($this->sortBy, $this->orderBy)
             ->paginate($this->perPage);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 class AppServiceProvider extends ServiceProvider
@@ -21,5 +22,13 @@ class AppServiceProvider extends ServiceProvider
     {
         //Blade::component('frontend.layouts.app', 'frontend-layout');
         //Blade::component('admin.layouts.app', 'admin-layout');
+
+        Builder::macro('search', function ($field, $string) {
+            return $string ? $this->where($field, 'like', '%' . $string . '%') : $this;
+        });
+
+        Builder::macro('orSearch', function ($field, $string) {
+            return $string ? $this->orWhere($field, 'like', '%' . $string . '%') : $this;
+        });
     }
 }
