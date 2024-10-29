@@ -10,7 +10,7 @@ use Yajra\DataTables\DataTables;
 use \App\Models\SingleService as SingleServiceModel;
 class SingleService extends Component
 {
-    use WithPagination,CustomDatatable;
+    use CustomDatatable;
     public $showEditModal = false;
     public $state = [];
     public $itemId = 0;
@@ -26,7 +26,7 @@ class SingleService extends Component
     {
         $this->showEditModal = false;
         $this->dispatch('show-modal', id: 'curdModal');
-        $this->dispatch('reloadTable');
+       // $this->dispatch('reloadTable');
     }
     public function mount(){
 

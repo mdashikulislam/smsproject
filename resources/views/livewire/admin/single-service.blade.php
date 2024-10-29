@@ -17,7 +17,6 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex" style="gap: 1rem;">
-                            <!-- Adjust width for the left select dropdowns -->
                             <div class="mb-3" style="width: 150px;">
                                 <select class="form-control" wire:model.live="perPage">
                                     {!! getDatatableShowItemDropdown() !!}
@@ -179,7 +178,6 @@
 
 @push('style')
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 @endpush
 @push('script')
     <script src="{{asset('admin/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>

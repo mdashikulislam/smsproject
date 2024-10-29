@@ -1,8 +1,11 @@
 <?php
 namespace App\Traits;
 use Livewire\Component;
+use Livewire\WithPagination;
+
 trait CustomDatatable
 {
+    use WithPagination;
     public $model;
     public $perPage = 10;
     public $sortBy = 'id';
@@ -62,7 +65,6 @@ trait CustomDatatable
     }
     public function sortByColumn($field)
     {
-
         if ($this->sortBy === $field) {
             $this->orderBy = $this->orderBy === 'ASC' ? 'DESC' : 'ASC';
         } else {
