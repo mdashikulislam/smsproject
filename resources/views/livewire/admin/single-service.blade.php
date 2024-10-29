@@ -25,7 +25,7 @@
                             </div>
                             @if($isDeleteActive)
                             <div class="mb-3" style="width: 200px;">
-                                <a href="#" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i>Delete</a>
+                                <a href="#" onclick="bulkDestroy()" class="btn btn-danger"><i class="fas fa-trash fa-fw"></i>Delete</a>
                             </div>
                             @endif
                         </div>

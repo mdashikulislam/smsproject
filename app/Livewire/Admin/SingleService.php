@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Traits\CustomDatatable;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -9,21 +10,17 @@ use Yajra\DataTables\DataTables;
 use \App\Models\SingleService as SingleServiceModel;
 class SingleService extends Component
 {
-    use WithPagination;
+    use WithPagination,CustomDatatable;
     public $showEditModal = false;
     public $state = [];
     public $itemId = 0;
-    protected $listeners = ['delete','singleCheck'];
+    protected $listeners = ['delete','bulkDestroy'];
 
     //For Datatable
-    public $perPage = 10;
-    public $sortBy = 'updated_at';
-    public $orderBy = 'DESC';
-    public $search = '';
-    public $checked = [];
-    public $is_checked_all = false;
-    public $action = '';
-    public $isDeleteActive = false;
+    public function __construct()
+    {
+        $this->setModel(\App\Models\SingleService::class);
+    }
 
     public function addNew()
     {
@@ -32,6 +29,8 @@ class SingleService extends Component
         //$this->dispatch('reloadTable');
     }
     public function mount(){
+
+        $this->initTrait();
         $this->state = [
             'name' => '',
             'price' => '',
@@ -125,25 +124,7 @@ class SingleService extends Component
             ->paginate($this->perPage);
     }
 
-    public function checkAll()
-    {
-        if ($this->is_checked_all) {
-            $this->isDeleteActive = true;
-            $this->checked = $this->getData()->pluck('id')->all();
-        } else {
-            $this->isDeleteActive = false;
-            $this->checked = [];
-        }
-    }
 
-    public function singleCheck()
-    {
-        if (!empty($this->checked)){
-            $this->isDeleteActive = true;
-        }else{
-            $this->isDeleteActive = false;
-        }
-    }
     public function render()
     {
         return view('livewire.admin.single-service')
