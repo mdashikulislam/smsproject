@@ -55,7 +55,6 @@ trait CustomDatatable
     }
     public function getData()
     {
-
         if (!$this->model) {
             throw new \Exception("Please define Model into constructor " . __CLASS__);
         }

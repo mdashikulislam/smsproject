@@ -185,13 +185,9 @@
     <script src="{{asset('admin/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
     <script src="{{asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js')}}"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            fillTable();
-            // Livewire.on('reloadTable', () => {
-            //     $('table').DataTable().destroy();
-            //     fillTable();
-            // });
-
+        //fillTable();
+        document.addEventListener('reloadTable', function () {
+            //fillTable();
         });
         function fillTable(){
             $('tables').DataTable({

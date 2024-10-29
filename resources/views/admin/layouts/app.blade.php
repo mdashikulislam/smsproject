@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/flatpickr/flatpickr.min.css')}}" data-navigate-track>
     <link rel="stylesheet" href="{{asset('admin/assets/fonts/feather-font/css/iconfont.css')}}" data-navigate-track>
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/flag-icon-css/css/flag-icon.min.css')}}" data-navigate-track>
-    <link rel="stylesheet" href="{{asset('admin/assets/css/demo1/style.css')}}" data-navigate-track>
+    <link rel="stylesheet" href="{{asset('admin/assets/css/demo2/style.css')}}" data-navigate-track>
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" data-navigate-track/>
     @livewireStyles
     @stack('style')
@@ -22,17 +22,17 @@
 <div class="main-wrapper">
     @include('admin.include.sidebar')
     <div class="page-wrapper">
-        <nav class="navbar">
+        <nav class="navbar" >
             <a href="#" class="sidebar-toggler">
                 <i data-feather="menu"></i>
             </a>
             <div class="navbar-content">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav" wire:ignore>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="wd-30 ht-30 rounded-circle" src="" alt="profile">
                         </a>
-                        <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
+                        <div class="dropdown-menu p-0" aria-labelledby="profileDropdown" >
                             <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
                                 <div class="mb-3">
                                     <img class="wd-80 ht-80 rounded-circle" src="" alt="">
@@ -86,34 +86,28 @@
 <script src="{{asset('admin/assets/js/template.js')}}" data-navigate-track></script>
 <script src="{{asset('admin/assets/js/dashboard-dark.js')}}" data-navigate-track></script>
 @livewireScripts
-
-@stack('script')
 <script>
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-        window.addEventListener('show-modal', event => {
-            $(`#${event.detail.id}`).modal('show');
+    window.addEventListener('show-modal', event => {
+        $(`#${event.detail.id}`).modal('show');
+    });
+    window.addEventListener('hide-modal', event => {
+        $(`#${event.detail.id}`).modal('hide');
+    });
+    window.addEventListener('toast',event =>{
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
         });
-        window.addEventListener('hide-modal', event => {
-            $(`#${event.detail.id}`).modal('hide');
-        });
-        window.addEventListener('toast',event =>{
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: event.detail.type,
-                title: event.detail.message
-            });
+        Toast.fire({
+            icon: event.detail.type,
+            title: event.detail.message
         });
     });
     function bulkDestroy(){
@@ -147,5 +141,6 @@
         });
     }
 </script>
+@stack('script')
 </body>
 </html>
