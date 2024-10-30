@@ -87,6 +87,7 @@
 <script src="{{asset('admin/assets/js/template.js')}}" data-navigate-track></script>
 {{--<script src="{{asset('admin/assets/js/dashboard-dark.js')}}" data-navigate-track></script>--}}
 @livewireScripts
+
 <script>
     window.addEventListener('show-modal', event => {
         $(`#${event.detail.id}`).modal('show');

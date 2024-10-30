@@ -183,7 +183,6 @@
     <script src="{{asset('admin/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
     <script src="{{asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js')}}"></script>
     <script>
-        //fillTable();
         document.addEventListener('reloadTable', function () {
             //fillTable();
         });
