@@ -143,7 +143,7 @@
                                         @if($permission->group == $gName)
                                             <li>
                                                 <div class="form-check mb-3">
-                                                    <input wire:model="permissionChecked" value="{{$permission->id}}" class="form-check-input" type="checkbox"  id="flexCheckDefault{{$permission->id}}">
+                                                    <input wire:model.live="permissionChecked" wire:change="updateSinglePermission" value="{{$permission->id}}" class="form-check-input" type="checkbox"  id="flexCheckDefault{{$permission->id}}">
                                                     <label class="form-check-label" for="flexCheckDefault{{$permission->id}}">
                                                         {{$permission->name}}
                                                     </label>

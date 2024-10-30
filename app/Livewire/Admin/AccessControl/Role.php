@@ -106,10 +106,11 @@ class Role extends Component
 
     public function showPermission(RoleModel $role)
     {
+        $this->is_checked_all_permission = false;
         $this->selectedRole = $role;
         $this->permissionData = Permission::get();
         $this->permissionChecked = $this->selectedRole->permissions->pluck('id')->toArray();
-        if (count($this->permissionChecked) > 0 && (count($this->permissionChecked) == $this->selectedRole->permissions->count())){
+        if (count($this->permissionChecked) > 0 && (count($this->permissionChecked) == $this->permissionData->count())){
             $this->is_checked_all_permission = true;
         }
         $this->dispatch('show-modal', id: 'permission-modal');
@@ -126,8 +127,19 @@ class Role extends Component
         }
         $this->dispatch('toast',type:'success',message:'All Permissions Updated');
     }
-    public function updatePermission()
+    public function updateSinglePermission()
     {
-
+        if (!empty($this->permissionChecked)){
+            $permissions = Permission::whereIn('id', $this->permissionChecked)->get();
+            $this->selectedRole->syncPermissions($permissions);
+        }else{
+            $this->selectedRole->syncPermissions([]);
+        }
+        if (count($this->permissionChecked) > 0 && (count($this->permissionChecked) == $this->permissionData->count())){
+            $this->is_checked_all_permission = true;
+        }else{
+            $this->is_checked_all_permission = false;
+        }
+        $this->dispatch('toast',type:'success',message:'Permissions Updated');
     }
 }
