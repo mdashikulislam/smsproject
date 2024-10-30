@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\AccessControl;
 use App\Traits\CustomDatatable;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Spatie\Permission\Models\Permission;
 use \Spatie\Permission\Models\Role as RoleModel;
 class Role extends Component
 {
@@ -13,7 +14,10 @@ class Role extends Component
     public $state;
     public $itemId;
     protected $listeners = ['delete'];
-
+    public $permissionChecked = [];
+    public $permissionData = [];
+    public $selectedRole;
+    public $is_checked_all_permission;
     public function boot()
     {
         $this->setModel(RoleModel::class);
@@ -99,9 +103,31 @@ class Role extends Component
             ]);
     }
 
-    public function showPermission($id)
+
+    public function showPermission(RoleModel $role)
     {
+        $this->selectedRole = $role;
+        $this->permissionData = Permission::get();
+        $this->permissionChecked = $this->selectedRole->permissions->pluck('id')->toArray();
+        if (count($this->permissionChecked) > 0 && (count($this->permissionChecked) == $this->selectedRole->permissions->count())){
+            $this->is_checked_all_permission = true;
+        }
         $this->dispatch('show-modal', id: 'permission-modal');
     }
 
+    public function checkAllPermission()
+    {
+        if ($this->is_checked_all_permission) {
+            $this->permissionChecked = $this->permissionData->pluck('id')->toArray();
+            $this->selectedRole->syncPermissions($this->permissionData);
+        } else {
+            $this->permissionChecked = [];
+            $this->selectedRole->syncPermissions([]);
+        }
+        $this->dispatch('toast',type:'success',message:'All Permissions Updated');
+    }
+    public function updatePermission()
+    {
+
+    }
 }

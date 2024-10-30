@@ -16,3 +16,6 @@ Route::get('contact-us',\App\Livewire\Frontend\ContactUs::class)->name('contact-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //require __DIR__.'/admin.php';
+Route::get('test',function (){
+   return \Spatie\Permission\Models\Permission::all();
+});

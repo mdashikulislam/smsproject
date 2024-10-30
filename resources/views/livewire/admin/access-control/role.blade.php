@@ -116,21 +116,46 @@
                     <h5 class="modal-title" id="permissionModalLabel"> Role</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                 </div>
-                <div class="modal-body permission" >
-                    <div>
-                        <div class="head">
-                            Users
+                <div class="modal-body" >
+                    <div class="permission">
+                        <div>
+                            <div class="form-check mb-3">
+                                <input wire:model.live="is_checked_all_permission"
+                                       wire:change="checkAllPermission"  class="form-check-input" type="checkbox"  id="flexCheckDefaultx">
+                                <label class="form-check-label" for="flexCheckDefaultx">
+                                    Mark All Access Key - for <strong>{{@$selectedRole->name}}</strong> Role
+                                </label>
+                            </div>
                         </div>
-                        <ul>
-                            <li>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Default checkbox
-                                    </label>
+                        @php
+                            $groupNames = [];
+                            if (!empty($permissionData)){
+                                $groupNames = array_unique(array_column($permissionData->toArray(), 'group'));
+                            }
+                        @endphp
+                        @forelse($groupNames as $key => $gName)
+                            <div wire:key="{{$key}}">
+                                <div class="head">
+                                    {{$gName}}
                                 </div>
-                            </li>
-                        </ul>
+                                <ul>
+                                    @forelse($permissionData as $permission)
+                                        @if($permission->group == $gName)
+                                            <li>
+                                                <div class="form-check mb-3">
+                                                    <input wire:model="permissionChecked" value="{{$permission->id}}" class="form-check-input" type="checkbox"  id="flexCheckDefault{{$permission->id}}">
+                                                    <label class="form-check-label" for="flexCheckDefault{{$permission->id}}">
+                                                        {{$permission->name}}
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        @endif
+                                    @empty
+                                    @endforelse
+                                </ul>
+                            </div>
+                        @empty
+                        @endforelse
                     </div>
                 </div>
                 <div class="modal-footer">
