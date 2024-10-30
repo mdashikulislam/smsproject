@@ -3,7 +3,7 @@
         <ol class="breadcrumb breadcrumb-arrwo">
             <li class="breadcrumb-item"><a wire:navigate href="{{route('admin.dashboard')}}">Dashboard</a></li>
             <li class="breadcrumb-item active" aria-current="page">Access Control</li>
-            <li class="breadcrumb-item active" aria-current="page">Role</li>
+            <li class="breadcrumb-item active" aria-current="page">Manage Role</li>
         </ol>
     </nav>
     <div class="row">
@@ -113,7 +113,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="permissionModalLabel"> Role</h5>
+                    <h5 class="modal-title" id="permissionModalLabel">All Permission List</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
                 </div>
                 <div class="modal-body" >

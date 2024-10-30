@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use App\Traits\CustomDatatable;
 use Illuminate\Support\Facades\Validator;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Yajra\DataTables\DataTables;
@@ -123,11 +124,10 @@ class SingleService extends Component
             ->orderBy($this->sortBy, $this->orderBy)
             ->paginate($this->perPage);
     }
-
+    #[Layout(ADMIN_LAYOUT,['seoTitle'=>'Single Service'])]
     public function render()
     {
         return view('livewire.admin.single-service')
-            ->layout(ADMIN_LAYOUT,['seoTitle'=>'Single Service'])
             ->with([
                 'services' => $this->getData()
             ]);

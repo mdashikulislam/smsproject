@@ -46,3 +46,16 @@ function getStatusLabel($value)
 {
     return ($value == '1') ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">Inactive</span>';
 }
+
+function getAdminRoleDropdown($selected = 0)
+{
+    $html = '';
+    foreach (\Spatie\Permission\Models\Role::where('name','!=',USER)->get() as $key => $value) {
+        $html .='<option selected value="'.$value->id.'"';
+        if ($selected == $value->id) {
+            $html .='selected';
+        }
+        $html .='>'.$value->name.'</option>';
+    }
+    return $html;
+}
