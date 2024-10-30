@@ -17,7 +17,7 @@ class SingleService extends Component
     protected $listeners = ['delete'];
 
     //For Datatable
-    public function __construct()
+    public function boot()
     {
         $this->setModel(\App\Models\SingleService::class);
     }

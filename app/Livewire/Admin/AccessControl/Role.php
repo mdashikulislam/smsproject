@@ -13,7 +13,8 @@ class Role extends Component
     public $state;
     public $itemId;
     protected $listeners = ['delete'];
-    public function __construct()
+
+    public function boot()
     {
         $this->setModel(RoleModel::class);
     }
@@ -82,7 +83,6 @@ class Role extends Component
             $this->dispatch('toast',type:'error',message:'Role not deleted');
         }
     }
-
     public function getData()
     {
         return RoleModel::when(!empty($this->search),function ($query){
@@ -98,4 +98,10 @@ class Role extends Component
                 'roles'=>$this->getData()
             ]);
     }
+
+    public function showPermission($id)
+    {
+        $this->dispatch('show-modal', id: 'permission-modal');
+    }
+
 }

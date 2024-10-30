@@ -55,7 +55,7 @@
                                 <td>{{$data->created_at->format('Y-m-d H:i:s')}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a   href='#'  class='btn btn-sm btn-warning text-white'> <i class='fas fa-cog'></i></a>
+                                        <a wire:click.prevent="showPermission({{$data->id}})"  href='#'  class='btn btn-sm btn-warning text-white'> <i class='fas fa-cog'></i></a>
                                         @if($data->is_default != '1')
                                         <a   href='#' wire:click.prevent='edit({{$data->id}})' class='btn btn-sm btn-success text-white'> <i class='fas fa-edit'></i></a>
                                         <a   href='#' onclick="confirmDelete({{ $data->id }})" class='btn btn-sm btn-danger text-white'><i class='fas fa-trash'></i></a>
@@ -109,4 +109,70 @@
             </form>
         </div>
     </div>
+    <div wire:ignore.self class="modal fade" id="permission-modal" role="dialog" tabindex="-1" aria-labelledby="permissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="permissionModalLabel"> Role</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="btn-close"></button>
+                </div>
+                <div class="modal-body permission" >
+                    <div>
+                        <div class="head">
+                            Users
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Default checkbox
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+@push('style')
+    <style>
+        .form-check label{
+            margin-left: 10px;
+        }
+        .form-check-input{
+            margin-top: 2px!important;
+            margin-left: 0!important;
+        }
+        .permission ul{
+            padding: 20px 30px;
+            display: table;
+            width: 100%;
+            clear: both;
+            /*background: #fbfbfb;*/
+            margin-bottom: 0;
+        }
+        .permission ul li{
+            list-style: none;
+            width: 25%;
+            float: left;
+        }
+        .permission .head {
+            background:#1C252C;
+            color: #fff;
+            padding: 8px 15px;
+            font-size: 10.5pt;
+            font-weight: bold;
+        }
+        .all_check{
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+    </style>
+@endpush
+
