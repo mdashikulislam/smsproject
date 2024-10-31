@@ -18,9 +18,21 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a wire:navigate  href="{{route('admin.phone-number-list')}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Phone Number List</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a wire:navigate  href="{{route('admin.single-service')}}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Single Service</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a wire:navigate  href="{{route('admin.message-list')}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Message List</span>
                 </a>
             </li>
             <li class="nav-item">

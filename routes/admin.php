@@ -1,4 +1,6 @@
 <?php
+
+use App\Livewire\Admin\PhoneNumberList;
 use Illuminate\Support\Facades\Route;
 use \App\Livewire\Admin\SingleService;
 use \App\Livewire\Admin\Dashboard;
@@ -14,4 +16,5 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
         Route::get('manage-admin',ManageAdmin::class)->name('manage-admin');
     });
     Route::get('message-list',MessageList::class)->name('message-list');
+    Route::get('phone-number-list',PhoneNumberList::class)->name('phone-number-list');
 });

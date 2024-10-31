@@ -59,3 +59,21 @@ function getAdminRoleDropdown($selected = 0)
     }
     return $html;
 }
+function networkType(): array
+{
+    return [
+        1 => 'Lebara',
+        2 => 'EE',
+        3 => 'O2',
+        4 => 'Vodafone',
+        5 => 'Lyca',
+    ];
+}
+function getNetworkType($id): string
+{
+    $networkType = networkType();
+    if(array_key_exists($id, $networkType)){
+        return $networkType[$id];
+    }
+    return '';
+}
