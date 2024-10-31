@@ -69,7 +69,7 @@
                                 <td>{{$data->rec_time}}</td>
                                 <td></td>
                                 <td>{{$data->from_no}}</td>
-                                <td style="word-break: break-all">{{$data->message}}</td>
+                                <td style="white-space: unset">{{$data->message}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a   href='#' onclick="confirmDelete({{ $data->id }})" class='btn btn-sm btn-danger text-white'><i class='fas fa-trash'></i></a>

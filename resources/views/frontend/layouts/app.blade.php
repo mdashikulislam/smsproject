@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+
 @include('frontend.include.head')
 
 <body class="sticky-header">

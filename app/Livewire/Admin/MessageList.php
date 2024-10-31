@@ -10,9 +10,16 @@ use Livewire\Component;
 class MessageList extends Component
 {
     use CustomDatatable;
+    protected $listeners = ['delete'];
     public function getData()
     {
-        return Inbox::orderBy($this->sortBy, $this->orderBy)->paginate($this->perPage);
+        return Inbox::when(!empty($this->search),function ($q){
+            $q->where(function($query){
+                $query->search('from_no',$this->search)
+                ->orSearch('message',$this->search);
+            });
+        })
+        ->orderBy($this->sortBy, $this->orderBy)->paginate($this->perPage);
     }
 
     public function mount()
@@ -22,6 +29,16 @@ class MessageList extends Component
     public function boot()
     {
         $this->setModel(Inbox::class);
+    }
+
+    public function delete(Inbox $inbox)
+    {
+        $delete = $inbox->delete();
+        if ($delete){
+            $this->dispatch('toast',type:'success',message:'Message deleted successfully');
+        }else{
+            $this->dispatch('toast',type:'error',message:'Message not deleted');
+        }
     }
     #[Layout(ADMIN_LAYOUT,['seoTitle'=>'Message List'])]
     public function render()

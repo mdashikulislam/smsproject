@@ -2,6 +2,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{{ @$seoTitle}} | {{env('APP_NAME')}}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @if(isset($seoDescription))
         <meta name="description" content="{{$seoDescription}}">
     @endif
