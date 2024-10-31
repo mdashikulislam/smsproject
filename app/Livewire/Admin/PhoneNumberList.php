@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Sim;
 use App\Traits\CustomDatatable;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class PhoneNumberList extends Component
@@ -16,7 +17,8 @@ class PhoneNumberList extends Component
         return Sim::orderBy($this->sortBy,$this->orderBy)->paginate($this->perPage);
     }
 
-    #[Layout(ADMIN_LAYOUT,['seoTitle'=>'Phone Number List'])]
+    #[Layout(ADMIN_LAYOUT)]
+    #[Title('Phone Number List')]
     public function render()
     {
         return view('livewire.admin.phone-number-list')

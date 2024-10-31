@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\AccessControl;
 use App\Traits\CustomDatatable;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use \Spatie\Permission\Models\Role as RoleModel;
@@ -94,7 +95,8 @@ class Role extends Component
             $query->search('name', $this->search);
         })->withCount('users')->orderBy($this->sortBy, $this->orderBy)->paginate($this->perPage);
     }
-    #[Layout(ADMIN_LAYOUT,['seoTitle'=>'Manage Role'])]
+    #[Layout(ADMIN_LAYOUT)]
+    #[Title('Manage Role')]
     public function render()
     {
         return view('livewire.admin.access-control.role')

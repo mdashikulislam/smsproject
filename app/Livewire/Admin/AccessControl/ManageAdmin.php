@@ -7,6 +7,7 @@ use App\Traits\CustomDatatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -132,7 +133,8 @@ class ManageAdmin extends Component
             $this->dispatch('toast',type:'error',message:'User not deleted');
         }
     }
-    #[Layout(ADMIN_LAYOUT,['seoTitle'=>'Manage Admin'])]
+    #[Layout(ADMIN_LAYOUT)]
+    #[Title('Manage Admin')]
     public function render()
     {
         return view('livewire.admin.access-control.manage-admin')

@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Models\Inbox;
 use App\Traits\CustomDatatable;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class MessageList extends Component
@@ -40,7 +41,8 @@ class MessageList extends Component
             $this->dispatch('toast',type:'error',message:'Message not deleted');
         }
     }
-    #[Layout(ADMIN_LAYOUT,['seoTitle'=>'Message List'])]
+    #[Layout(ADMIN_LAYOUT)]
+    #[Title('Message List')]
     public function render()
     {
         return view('livewire.admin.message-list')

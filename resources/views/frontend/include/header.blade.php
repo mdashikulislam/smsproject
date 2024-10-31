@@ -55,6 +55,7 @@
                             <li>
                                 <a class="{{$currentRoute == 'contact-us' ? 'active':''}}" wire:navigate href="{{route('contact-us')}}">Contact</a>
                             </li>
+
                             @guest
                                 @if(Route::has('login'))
                                     <li class="auth-btn">

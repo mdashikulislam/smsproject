@@ -13,9 +13,6 @@
     {{$slot}}
     @include('frontend.include.footer')
 </div>
-{{--@if(request()->is('admin*'))--}}
-{{--@else--}}
-{{--@endif--}}
 @include('frontend.include.script')
 </body>
 </html>
