@@ -71,7 +71,7 @@
                         </tbody>
                     </table>
                     <div class="mt-3">
-                        {{$roles->links()}}
+                        {{$roles->links(data: ['scrollTo' => false])}}
                     </div>
                 </div>
             </div>

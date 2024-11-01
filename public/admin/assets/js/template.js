@@ -200,11 +200,11 @@
 
 
     // Prevent body scrolling while sidebar scroll
-    // $('.sidebar .sidebar-body').hover(function () {
-    //   $('body').addClass('overflow-hidden');
-    // }, function () {
-    //   $('body').removeClass('overflow-hidden');
-    // });
+    $('.sidebar .sidebar-body').hover(function () {
+      $('body').addClass('overflow-hidden');
+    }, function () {
+      $('body').removeClass('overflow-hidden');
+    });
 
 
   });

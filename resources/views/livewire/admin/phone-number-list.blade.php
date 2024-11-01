@@ -31,7 +31,7 @@
                             <input class="form-control" type="text" wire:model.live.debounce.500="search" placeholder="Search">
                         </div>
                     </div>
-                    <table class="table table-auto">
+                    <table class="table table-auto table-hover" >
                         <thead>
                         <tr>
                             <th>
@@ -65,7 +65,32 @@
                         </thead>
                         <tbody>
                         @forelse($numbers as $data)
-                            <tr wire:key="{{$data->id}}">
+                            @php
+                                $status = $data->status;
+                                $class = '';
+                                $trBgColor = '';
+                                if ($data->status == 'Paid'){
+                                    if (empty($data->userSim)){
+                                        $status = "Available";
+                                        $class = 'text-success';
+                                        $trBgColor = 'table-success';
+                                    }else if (\Carbon\Carbon::parse($data->start_date)->lte(\Carbon\Carbon::now()) && \Carbon\Carbon::now()->lte(\Carbon\Carbon::parse($data->end_date))){
+                                        $status = "Running";
+                                        $class = 'text-warning';
+                                        $trBgColor = 'table-dark';
+                                    }else{
+                                        $status = "Expired";
+                                        $class = 'text-danger';
+                                    }
+                                }elseif ($data->status == 'Free'){
+                                    $trBgColor = 'table-warning';
+                                }elseif ($data->status == 'Service'){
+                                    $trBgColor = 'table-info';
+                                }elseif ($data->status == 'Limited'){
+                                    $trBgColor = 'table-primary';
+                                }
+                            @endphp
+                            <tr wire:key="{{$data->id}}" class="{{$trBgColor}}">
                                 <td>
                                     <div class="flex items-center">
                                         <input type="checkbox" wire:model.live="checked" value="{{ $data->id }}" wire:change="singleCheck"
@@ -76,11 +101,11 @@
                                 <td>{{$data->phone_number}}</td>
                                 <td>{{$data->imsi}}</td>
                                 <td></td>
-                                <td>{{$data->status}}</td>
+                                <td class="{{$class}}">{{$status}}</td>
                                 <td>{{$data->created}}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a   href='#' onclick="confirmDelete({{ $data->id }})" class='btn btn-sm btn-danger text-white'><i class='fas fa-trash'></i></a>
+                                        <a   href='#' onclick="confirmDelete({{ $data->id }})" class='btn  btn-danger text-white btn-xs'><i class='fas fa-trash'></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -92,7 +117,7 @@
                         </tbody>
                     </table>
                     <div class="mt-3">
-                        {{$numbers->links()}}
+                        {{$numbers->links(data: ['scrollTo' => false])}}
                     </div>
                 </div>
             </div>

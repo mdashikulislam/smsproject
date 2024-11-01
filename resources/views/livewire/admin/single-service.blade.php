@@ -99,7 +99,7 @@
                         </tbody>
                     </table>
                     <div class="mt-3">
-                        {{$services->links()}}
+                        {{$services->links(data: ['scrollTo' => false])}}
                     </div>
                 </div>
             </div>

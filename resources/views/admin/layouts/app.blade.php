@@ -17,7 +17,7 @@
     @livewireStyles
     @stack('style')
 </head>
-<body>
+<body >
 <div class="main-wrapper">
     @include('admin.include.sidebar')
     <div class="page-wrapper">
@@ -60,12 +60,10 @@
 </div>
 
 <script src="{{asset('admin/assets/vendors/core/core.js')}}" data-navigate-once></script>
-<script src="{{asset('admin/assets/vendors/feather-icons/feather.min.js')}}" ></script>
+<script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.2/feather.min.js')}}" ></script>
 <script src="{{asset('admin/assets/vendors/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{asset('admin/assets/js/template.js')}}" ></script>
-
 @livewireScripts
-
 <script>
     window.addEventListener('show-modal', event => {
         $(`#${event.detail.id}`).modal('show');
