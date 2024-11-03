@@ -48,7 +48,7 @@
                             <div class="row mb-3 form-group">
                                 <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" wire:model.live="name"
+                                    <input id="name" type="text" wire:model="name"
                                            class="form-control @error('name') is-invalid @enderror"
                                            value="{{ old('name') }}" autocomplete="name" autofocus>
                                     @error('name')
@@ -61,7 +61,7 @@
                             <div class="row mb-3 form-group">
                                 <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
                                 <div class="col-md-6">
-                                    <input id="email" type="email" wire:model.live="email"
+                                    <input id="email" type="email" wire:model="email"
                                            class="form-control @error('email') is-invalid @enderror"
                                            value="{{ old('email') }}" autocomplete="email" autofocus>
                                     @error('email')
@@ -78,7 +78,7 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                            class="form-control @error('password') is-invalid @enderror"
-                                           wire:model.live="password">
+                                           wire:model="password">
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -92,7 +92,7 @@
                                 <div class="col-md-6">
                                     <input id="password_confirmation" type="password"
                                            class="form-control @error('password_confirmation') is-invalid @enderror"
-                                           wire:model.live="password_confirmation">
+                                           wire:model="password_confirmation">
                                     @error('password_confirmation')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -103,6 +103,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
+                                        <span wire:loading class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         {{ __('Register') }}
                                     </button>
                                     @if (Route::has('login'))

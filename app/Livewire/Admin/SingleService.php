@@ -6,6 +6,7 @@ use App\Traits\CustomDatatable;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Yajra\DataTables\DataTables;
@@ -17,7 +18,6 @@ class SingleService extends Component
     public $state = [];
     public $itemId = 0;
     protected $listeners = ['delete'];
-
     //For Datatable
     public function boot()
     {

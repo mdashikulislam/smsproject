@@ -98,6 +98,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">
+                            <span wire:loading class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                             @if($showEditModal)
                                 Update
                             @else
