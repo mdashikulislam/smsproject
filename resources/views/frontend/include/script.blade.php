@@ -10,6 +10,25 @@
 <script src="{{asset('frontend/assets/js/tilt.js')}}"></script>
 <script src="{{asset('frontend/assets/js/jquery.nav.js')}}"></script>
 <script src="{{asset('frontend/assets/js/app.js')}}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    window.addEventListener('toast',event =>{
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: event.detail.type,
+            title: event.detail.message
+        });
+    });
+</script>
 @stack('script')
 

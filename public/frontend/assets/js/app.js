@@ -33,7 +33,7 @@
         },
 
         contactForm: function () {
-            $(".sms-contact-form").on("submit", function (e) {
+            $(".sms-contact-forms").on("submit", function (e) {
                 e.preventDefault();
                 var _self = $(this);
                 var _selector = _self.closest("input,textarea");

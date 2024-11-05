@@ -46,40 +46,41 @@
                         <h3 class="title">
                             Get a free Keystroke quote now
                         </h3>
-                        <form method="POST" class="sms-contact-form">
+                        <form method="POST" wire:submit.prevent="sendContactMessage" class="sms-contact-form">
                             <div class="form-group">
                                 <label>Name</label>
                                 <input
                                     type="text"
-                                    class="form-control"
-                                    name="contact-name"
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    wire:model="name"
                                 />
+                                @error('name')
+                                    <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
                                 <input
                                     type="email"
-                                    class="form-control"
-                                    name="contact-email"
+                                    class="form-control @error('email') is-invalid @enderror"
+                                    wire:model="email"
                                 />
-                            </div>
-                            <div class="form-group">
-                                <label>Company</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="contact-company"
-                                />
+                                @error('email')
+                                <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="form-group mb--40">
                                 <label>How can we help you?</label>
                                 <textarea
-                                    name="contact-message"
+                                    wire:model="message"
                                     id="contact-message"
-                                    class="form-control textarea"
+                                    class="form-control textarea @error('message') is-invalid @enderror"
                                     cols="30"
                                     rows="4"
                                 ></textarea>
+                                @error('message')
+                                <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <button
