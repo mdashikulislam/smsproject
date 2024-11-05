@@ -13,16 +13,44 @@
     <link rel="stylesheet" href="{{asset('admin/assets/fonts/feather-font/css/iconfont.css')}}" >
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/sweetalert2/sweetalert2.min.css')}}" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" >
-    <link rel="stylesheet" href="{{asset('admin/assets/css/demo4/style.css')}}" data-navigate-track>
+    <link rel="stylesheet" href="{{asset('admin/assets/css/demo2/style.css')}}" data-navigate-track>
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" />
     @livewireStyles
     @stack('style')
 </head>
 <body >
 <div class="main-wrapper">
+    @include('admin.include.sidebar')
     <div class="page-wrapper">
-        @include('admin.include.sidebar')
-        <div class="container-fluid pt-3">
+        <nav class="navbar" >
+            <a href="#" class="sidebar-toggler">
+                <i data-feather="menu"></i>
+            </a>
+            <div class="navbar-content">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown" >
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="wd-30 ht-30 rounded-circle" src="{{asset('admin/assets/images/others/placeholder.jpg')}}" alt="profile">
+                        </a>
+                        <div class="dropdown-menu p-0" aria-labelledby="profileDropdown" >
+                            <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
+                                <div class="mb-3">
+                                    <img class="wd-80 ht-80 rounded-circle" src="{{asset('admin/assets/images/others/placeholder.jpg')}}" alt="">
+                                </div>
+                                <div class="text-center">
+                                    <p class="tx-16 fw-bolder">{{auth()->user()->name}}</p>
+                                    <p class="tx-12 text-muted">{{auth()->user()->email}}</p>
+                                </div>
+                            </div>
+                            <ul class="list-unstyled p-1" >
+                                @livewire('admin.component.logout')
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="page-content">
             {{@$slot}}
         </div>
         <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
