@@ -48,6 +48,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a wire:navigate  href="{{route('admin.settings')}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Settings</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link"  data-bs-toggle="collapse" href="#charts" role="button" aria-expanded="false" aria-controls="charts">
                     <i class="link-icon" data-feather="pie-chart"></i>
                     <span class="link-title">Access Control</span>

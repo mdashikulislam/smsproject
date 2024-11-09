@@ -28,7 +28,6 @@ class SingleService extends Component
     {
         $this->showEditModal = false;
         $this->dispatch('show-modal', id: 'curdModal');
-       // $this->dispatch('reloadTable');
     }
     public function mount(){
 

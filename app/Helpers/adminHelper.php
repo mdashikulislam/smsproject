@@ -77,3 +77,16 @@ function getNetworkType($id): string
     }
     return '';
 }
+function getNetworkDropdown($selected = 0)
+{
+    $options = networkType();
+    $html = '<option value="0">Any</option>';
+    foreach ($options as $key => $value) {
+        $html .='<option value="'.$key.'"';
+        if ($selected == $key) {
+            $html .='selected';
+        }
+        $html .='>'.$value.'</option>';
+    }
+    return $html;
+}

@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class Login extends Component
@@ -22,6 +23,11 @@ class Login extends Component
             $user = User::where(["email" => $this->email])->first();
             auth()->login($user, $this->remember_me);
             if (auth()->user()->hasRole(\USER)){
+                if (Session::has('url.intended')){
+                    $route = Session::get('url.intended');
+                    Session::forget('url.intended');
+                    return $this->redirect($route, navigate: true);
+                }
                 return $this->redirect(route('index'), navigate: true);
             }else{
                 return $this->redirect(route('admin.dashboard'), navigate: false);

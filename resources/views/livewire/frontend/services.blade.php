@@ -14,7 +14,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 col-12">
                         @persist('search')
-                        <input wire:model.live.debounce.350ms="search" type="text" class="form-control" placeholder="Search Your website">
+                            <input wire:model.live.debounce.350ms="search" type="text" class="form-control" placeholder="Search Your website">
                         @endpersist
                     </div>
                 </div>
@@ -26,7 +26,12 @@
                             <h4>
                                 <a href="/from/anster">{{$service->name}}</a>
                             </h4>
-                            <span>£{{$service->price}}</span>
+                            @if(!is_null($currentUser) && $currentUser->is_new == '1' && @$setting->new_user_discount > 0)
+                                <span>£{{calculatePriceWithDiscount($service->price,$setting->new_user_discount)}}</span>
+                                <span class="text-danger"><del>£{{$service->price}}</del></span>
+                            @else
+                                <span>£{{$service->price}}</span>
+                            @endif
                             <span
                                 wire:click.prevent="buy({{$service->id}})"
                                 class="buybtn">Buy</span>
@@ -45,19 +50,19 @@
             </li>
         </ul>
     </section>
-    <div class="modal fade" id="buyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="buyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <h4>Buy {!! $state['name'] !!} Service</h4>
+                    <h4 class="text-center">Buy {!! $state['name'] !!} Service</h4>
                     <ul class="buy-modal-item">
                         <li>
                             <span>Network Type</span>
                             <select>
-                                <option value="">ANy</option>
+                                {!! getNetworkDropdown() !!}
                             </select>
                         </li>
                         <li>
@@ -70,13 +75,25 @@
                         </li>
                         <li>
                             <span>Discount</span>
-                            <strong>Price</strong>
+                            <strong>{{$setting->new_user_discount}}%</strong>
                         </li>
                         <li>
                             <span>Coupon</span>
-                            <strong>Price</strong>
+                            <strong>
+                                <input placeholder="Coupon" wire:model.live="coupon" type="text"><br>
+                                @if($this->coupon)
+                                <a  wire:click.prevent="calculateCoupon" href="">Calculate Coupon</a>
+                                @endif
+                            </strong>
+                        </li>
+                        <li>
+                            <span>Total</span>
+                            <strong>£{{$finalPrice}}</strong>
                         </li>
                     </ul>
+                    <div class="text-center">
+                        <button style="padding: 10px 15px" type="submit" class="sms-btn btn-sm btn-fill-primary">Buy Now</button>
+                    </div>
                 </div>
             </div>
         </div>
