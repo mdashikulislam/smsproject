@@ -34,11 +34,33 @@
                                 @include('admin.include.table-sortable-header',['title'=>'Id','name'=>'id'])
                             </th>
                             <th>
-                                @include('admin.include.table-sortable-header',['title'=>'Title','name'=>'title'])
+                                @include('admin.include.table-sortable-header',['title'=>'Code','name'=>'code'])
                             </th>
                             <th>
-                                @include('admin.include.table-sortable-header',['title'=>'Slug','name'=>'slug'])
+                                @include('admin.include.table-sortable-header',['title'=>'Value','name'=>'value'])
                             </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Max Uses','name'=>'max_uses'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Uses','name'=>'uses'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Start','name'=>'start'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Expire','name'=>'expire'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Coupon Type','name'=>'type'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Use Type','name'=>'use_type'])
+                            </th>
+                            <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Eligible','name'=>'eligible'])
+                            </th>
+
                             <th>
                                 @include('admin.include.table-sortable-header',['title'=>'Created','name'=>'created_at'])
                             </th>
@@ -49,8 +71,15 @@
                         @forelse($coupons as $data)
                             <tr wire:key="{{$data->id}}">
                                 <td>{{$data->id}}</td>
-                                <td>{{$data->title}}</td>
-                                <td>{{$data->slug}}</td>
+                                <td>{{$data->code}}</td>
+                                <td>{{$data->value}}</td>
+                                <td>{{$data->max_uses}}</td>
+                                <td>{{$data->uses}}</td>
+                                <td>{{\Illuminate\Support\Carbon::parse($data->start)->format('Y-m-d')}}</td>
+                                <td>{{\Illuminate\Support\Carbon::parse($data->expire)->format('Y-m-d')}}</td>
+                                <td>{{$data->type}}</td>
+                                <td>{{$data->use_type}}</td>
+                                <td>{{$data->eligible}}</td>
                                 <td>{{$data->created_at->format('Y-m-d H:i:s')}}</td>
                                 <td>
                                     <div class="btn-group">
@@ -152,11 +181,13 @@
                                 <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
                                 @enderror
                             </div>
-                            <div class="mb-3 col-lg-12 col-12" wire:ignore id="select2">
+                            <div class="mb-3 col-lg-12 col-12"  id="select2">
                                 <label class="form-label">Select User</label>
-                                <select style="width: 100%" multiple="multiple" wire:model="state.user"  class="form-control select2 @error('user') is-invalid @enderror">
-                                    {!! getAllUserDropdown() !!}
-                                </select>
+                                <div wire:ignore>
+                                    <select  style="width: 100%" multiple="multiple" wire:model="state.user"  class="form-control select2 @error('user') is-invalid @enderror">
+                                        {!! getAllUserDropdown() !!}
+                                    </select>
+                                </div>
                                 @error('user')
                                 <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
                                 @enderror
@@ -192,19 +223,22 @@
             }
             $(".select2").select2({
                 dropdownParent: $('#curdModal'),
-                multiple:true
+                multiple:true,
             });
             $(".select2").on("select2:select select2:unselect", function (e) {
                 let selectedValues = $(this).val();
-                const allUserValue = "";
+                const allUserValue = "All";
                 if (selectedValues.includes(allUserValue) && e.params.data.id !== allUserValue) {
                     selectedValues = selectedValues.filter(value => value !== allUserValue);
                     $(this).val(selectedValues).trigger("change");
                 }else if(selectedValues && selectedValues.includes(allUserValue) && selectedValues.length > 1){
                     $(this).val([allUserValue]).trigger("change");
                 }
-{{--                @this.$set('state.user',selectedValues)--}}
+                @this.$set('state.user',selectedValues)
             });
         });
+        window.addEventListener('update-select2',function (){
+            $('.select2').val(@this.state.user).trigger('change');
+        })
     </script>
 @endpush

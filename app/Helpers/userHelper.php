@@ -46,7 +46,7 @@ function getAllUserDropdown($selected = '')
     $users = \App\Models\User::whereHas('roles',function ($q){
         //$q->where('name',\USER);
     })->get();
-    $html ='<option value="">All Users</option>';
+    $html ='<option value="All">All Users</option>';
     foreach ($users as $key => $value) {
         $html .='<option value="'.$value->id.'"';
         $html .='>'.$value->name.'</option>';

@@ -8,8 +8,9 @@ class Coupon extends Model
 {
     protected $fillable = ['code','max_uses','uses','start','expire','value','type','use_type','eligible'];
 
-    public function couponUsers()
+
+    public function users()
     {
-        return $this->hasMany(CouponUser::class);
+        return $this->belongsToMany(User::class);
     }
 }

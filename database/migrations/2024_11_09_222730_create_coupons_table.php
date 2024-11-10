@@ -12,8 +12,8 @@ return new class extends Migration {
             $table->string('code')->nullable();
             $table->integer('max_uses')->default(0);
             $table->integer('uses')->default(0);
-            $table->timestamp('start')->nullable();
-            $table->timestamp('expire')->nullable();
+            $table->date('start')->nullable();
+            $table->date('expire')->nullable();
             $table->decimal('value',10,2)->default(0);
             $table->enum('type', COUPON_TYPE_ARRAY)->default('Percentage');
             $table->enum('use_type', COUPON_USE_TYPE_ARRAY)->default('Single');
