@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>{{@$title}} | {{env('APP_NAME')}}</title>
+    <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -13,8 +14,10 @@
     <link rel="stylesheet" href="{{asset('admin/assets/fonts/feather-font/css/iconfont.css')}}" >
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/sweetalert2/sweetalert2.min.css')}}" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" >
+    <link rel="stylesheet" href="{{asset('admin/assets/vendors/flatpickr/flatpickr.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/assets/vendors/select2/select2.min.css')}}">
+    @stack('style-library')
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo2/style.css')}}" data-navigate-track>
-    <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" />
     @livewireStyles
     @stack('style')
 </head>
@@ -60,11 +63,17 @@
     </div>
 </div>
 <script src="{{asset('admin/assets/vendors/core/core.js')}}" data-navigate-once></script>
+<script src="{{asset('admin/assets/vendors/select2/select2.min.js')}}" data-navigate-once></script>
 <script src="{{asset('admin/assets/vendors/feather-icons/feather.js')}}" ></script>
 <script src="{{asset('admin/assets/vendors/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('admin/assets/vendors/flatpickr/flatpickr.min.js')}}" ></script>
+
+@stack('script-library')
 <script src="{{asset('admin/assets/js/template.js')}}" ></script>
+@stack('script')
 @livewireScripts
 <script>
+
     window.addEventListener('show-modal', event => {
         $(`#${event.detail.id}`).modal('show');
     });

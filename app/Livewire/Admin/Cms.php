@@ -53,7 +53,6 @@ class Cms extends Component
 
     public function store()
     {
-        dd($this->state);
         $validator = Validator::make($this->state, [
             'title' => ['required', 'string','max:255'],
             'slug' => ['required', 'string','unique:cms,slug'],

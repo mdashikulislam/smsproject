@@ -15,3 +15,6 @@ const STATUS_ARRAY = [
 
 const DATATABLE_SHOW_ITEM_ARRAY = [10, 20, 50, 100, 500];
 const SERVER_STATUS = ['Online', 'Offline'];
+const COUPON_TYPE_ARRAY = ['Fixed', 'Percentage'];
+const COUPON_USE_TYPE_ARRAY = ['Single', 'Multiple'];
+const COUPON_ELIGIBLE_ARRAY = ['All', 'New','Old'];

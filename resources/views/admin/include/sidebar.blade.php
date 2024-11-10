@@ -48,6 +48,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a wire:navigate  href="{{route('admin.coupons')}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Coupons</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a wire:navigate  href="{{route('admin.settings')}}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Settings</span>
