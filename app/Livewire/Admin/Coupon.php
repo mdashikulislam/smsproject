@@ -131,8 +131,18 @@ class Coupon extends Component
     public function getData()
     {
         return CouponModel::with('users')
-            ->when(!empty($this->search),function ($query){
-                $query->search('code',$this->search);
+            ->when(!empty($this->search),function ($q){
+                $q->where(function ($query){
+                    $query->search('code',$this->search)
+                        ->orSearch('max_uses',$this->search)
+                        ->orSearch('uses',$this->search)
+                        ->orSearch('value',$this->search)
+                        ->orSearch('type',$this->search)
+                        ->orSearch('use_type',$this->search)
+                        ->orSearch('eligible',$this->search);
+                });
+
+
             })
             ->orderBy($this->sortBy,$this->orderBy)->paginate($this->perPage);
     }
