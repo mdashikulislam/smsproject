@@ -57,11 +57,11 @@
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <h4 class="text-center">Buy {!! $state['name'] !!} Service</h4>
+                    <h4 class="text-center">Buy {!! $singleService['name'] !!} Service</h4>
                     <ul class="buy-modal-item">
                         <li>
                             <span>Network Type</span>
-                            <select>
+                            <select wire:model="network">
                                 {!! getNetworkDropdown() !!}
                             </select>
                         </li>
@@ -71,7 +71,7 @@
                         </li>
                         <li>
                             <span>Price</span>
-                            <strong>£{{$state['price']}}</strong>
+                            <strong>£{{$singleService['price']}}</strong>
                         </li>
                         <li>
                             <span>Discount</span>
@@ -80,9 +80,15 @@
                         <li>
                             <span>Coupon</span>
                             <strong>
-                                <input placeholder="Coupon" wire:model.live="coupon" type="text"><br>
-                                @if($this->coupon)
-                                <a  wire:click.prevent="calculateCoupon" href="">Calculate Coupon</a>
+                                <input placeholder="Coupon" class="form-control @error('coupon') is-invalid @enderror" wire:keyup="removeValidation" wire:model.live="coupon" type="text">
+                                @error('coupon')
+                                    <span class="d-block invalid-feedback" role="alert">{{$message}}</span>
+                                @enderror
+                                @if(strlen($this->coupon) >= 4)
+                                    <a  wire:click.prevent="calculateCoupon" href="">Calculate Coupon</a>
+                                @endif
+                                @if(!empty($activeCoupon))
+                                    <p>{{$activeCoupon['code']}} <a wire:click.prevent="removeCoupon" href="#"><i class="fas fa-trash"></i></a></p>
                                 @endif
                             </strong>
                         </li>
@@ -92,7 +98,7 @@
                         </li>
                     </ul>
                     <div class="text-center">
-                        <button style="padding: 10px 15px" type="submit" class="sms-btn btn-sm btn-fill-primary">Buy Now</button>
+                        <button wire:click.prevent="purchase" style="padding: 10px 15px" type="submit" class="sms-btn btn-sm btn-fill-primary">Buy Now</button>
                     </div>
                 </div>
             </div>
