@@ -52,6 +52,9 @@
                                 @include('admin.include.table-sortable-header',['title'=>'IMSI','name'=>'imsi'])
                             </th>
                             <th>
+                                @include('admin.include.table-sortable-header',['title'=>'Type','name'=>'type'])
+                            </th>
+                            <th>
                                 @include('admin.include.table-sortable-header',['title'=>'Earning','name'=>'earning'])
                             </th>
                             <th>
@@ -66,10 +69,10 @@
                         <tbody>
                         @forelse($numbers as $data)
                             @php
-                                $status = $data->status;
+                                $status = $data->type;
                                 $class = '';
                                 $trBgColor = '';
-                                if ($data->status == 'Paid'){
+                                if ($data->type == 'Paid'){
                                     if (empty($data->userSim)){
                                         $status = "Available";
                                         $class = 'text-success';
@@ -82,11 +85,11 @@
                                         $status = "Expired";
                                         $class = 'text-danger';
                                     }
-                                }elseif ($data->status == 'Free'){
+                                }elseif ($data->type == 'Free'){
                                     $trBgColor = 'table-warning';
-                                }elseif ($data->status == 'Service'){
+                                }elseif ($data->type == 'Service'){
                                     $trBgColor = 'table-info';
-                                }elseif ($data->status == 'Limited'){
+                                }elseif ($data->type == 'Limited'){
                                     $trBgColor = 'table-primary';
                                 }
                             @endphp
@@ -100,6 +103,7 @@
                                 <td>M{{$data->machine}} S{{$data->slot}} {{$data->com_port}} ({{$data->computer}}) [{{getNetworkType($data->network_type)}}]</td>
                                 <td>{{$data->phone_number}}</td>
                                 <td>{{$data->imsi}}</td>
+                                <td>{{$data->type}}</td>
                                 <td></td>
                                 <td class="{{$class}}">{{$status}}</td>
                                 <td>{{$data->created}}</td>

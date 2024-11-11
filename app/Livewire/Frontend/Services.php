@@ -38,7 +38,7 @@ class Services extends Component
             $this->dispatch('buy-modal');
         }
     }
-    
+
     public function purchase()
     {
 
