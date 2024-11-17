@@ -97,7 +97,7 @@
                             <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3" wire:ignore>
                             <label class="form-label">Content</label>
                             <textarea id="editor" wire:model="state.content" class="form-control @error('content') is-invalid @enderror"></textarea>
                             @error('content')
@@ -144,13 +144,20 @@
     @push('script')
         <script src="{{asset('admin/assets/vendors/ckeditor/ckeditor.js')}}"></script>
         <script>
-            document.addEventListener('editor-load', function () {
+            let editor;
+            window.addEventListener('editor-load', function () {
                 if (CKEDITOR.instances['editor']) {
                     CKEDITOR.instances['editor'].destroy(true);
                 }
-                const editor =   CKEDITOR.replace('editor',{
+                 editor =   CKEDITOR.replace('editor',{
                     removePlugins: 'exportpdf, cloudservices, easyimage'
                 });
+                editor.on('change', () => {
+                    @this.$set('state.content',editor.getData())
+                });
+            });
+            window.addEventListener('update-ckeditor',function (){
+               editor.setData(@this.state.content);
             });
         </script>
     @endpush

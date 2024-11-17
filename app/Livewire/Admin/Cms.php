@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use App\Traits\CustomDatatable;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -16,13 +17,17 @@ class Cms extends Component
     public $state = [];
     protected $listeners = ['delete'];
     public $itemId;
-    public $content;
     public function boot()
     {
         $this->setModel(CmsModel::class);
-        $this->dispatch('editor-load');
     }
     public function mount()
+    {
+        $this->dispatch('editor-load');
+        $this->initState();
+    }
+
+    public function initState()
     {
         $this->state = [
             'title' => '',
@@ -48,24 +53,26 @@ class Cms extends Component
     public function addNew()
     {
         $this->showEditModal = false;
+        $this->dispatch('editor-load');
+        $this->dispatch('update-ckeditor');
         $this->dispatch('show-modal', id: 'curdModal');
     }
 
+
     public function store()
     {
-        $validator = Validator::make($this->state, [
+        Validator::make($this->state, [
             'title' => ['required', 'string','max:255'],
             'slug' => ['required', 'string','unique:cms,slug'],
             'seo_title' => ['nullable', 'string','max:255'],
-             'seo_description' => ['nullable', 'string'],
-             'seo_keyword' => ['string', 'nullable'],
+            'seo_description' => ['nullable', 'string'],
+            'seo_keyword' => ['string', 'nullable'],
         ])->validate();
-        dd($this->state);
         $cms = CmsModel::create($this->state);
         if ($cms){
             $this->dispatch('hide-modal',id:'curdModal');
             $this->dispatch('toast',type:'success',message:'Cms create successfully');
-            $this->mount();
+            $this->initState();
         }else{
             $this->dispatch('toast',type:'error',message:'Cms not created');
         }
@@ -76,10 +83,38 @@ class Cms extends Component
         $this->showEditModal = true;
         $this->itemId = $cms->id;
         $this->state = $cms->toArray();
+        $this->dispatch('update-ckeditor');
         $this->dispatch('show-modal', id: 'curdModal');
     }
 
-
+    public function update()
+    {
+        Validator::make($this->state, [
+            'title' => ['required', 'string','max:255'],
+            'slug' => ['required', 'string','unique:cms,slug,'.$this->itemId],
+            'seo_title' => ['nullable', 'string','max:255'],
+            'seo_description' => ['nullable', 'string'],
+            'seo_keyword' => ['string', 'nullable'],
+        ])->validate();
+        $cms = CmsModel::find($this->itemId);
+        $cms->update($this->state);
+        if ($cms){
+            $this->dispatch('hide-modal',id:'curdModal');
+            $this->dispatch('toast',type:'success',message:'Cms updated successfully');
+            $this->initState();
+        }else{
+            $this->dispatch('toast',type:'error',message:'Cms not created');
+        }
+    }
+    public function delete(CmsModel $cms)
+    {
+        $delete = $cms->delete();
+        if ($delete){
+            $this->dispatch('toast',type:'success',message:'Cms deleted successfully');
+        }else{
+            $this->dispatch('toast',type:'error',message:'Cms not deleted');
+        }
+    }
     #[Layout(ADMIN_LAYOUT)]
     #[Title('Cms')]
     public function render()
