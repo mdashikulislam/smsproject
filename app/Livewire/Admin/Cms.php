@@ -77,7 +77,6 @@ class Cms extends Component
             $this->dispatch('toast',type:'error',message:'Cms not created');
         }
     }
-
     public function edit(CmsModel $cms)
     {
         $this->showEditModal = true;
