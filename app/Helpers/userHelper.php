@@ -53,3 +53,13 @@ function getAllUserDropdown($selected = '')
     }
     return $html;
 }
+
+function getSeo($slug)
+{
+    $seo = \App\Models\Seo::where('slug', $slug)->first();
+    if ($seo){
+        return ['seoTitle' => $seo->seo_title,'seoDescription' => $seo->seo_description,'seoKeyword' => $seo->seo_keyword];
+    }else{
+        return  ['seoTitle' =>'','seoDescription' => '','seoKeyword' => ''];
+    }
+}

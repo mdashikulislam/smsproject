@@ -15,8 +15,10 @@ class ContactUs extends Component
     #[Validate('required')]
     public $message;
 
+    public $seo = [];
     public function mount()
     {
+        $this->seo = getSeo(PRICING_SLUG);
         $this->name = '';
         $this->email = '';
         $this->message = '';
@@ -35,6 +37,6 @@ class ContactUs extends Component
     public function render()
     {
         return view('livewire.frontend.contact-us')
-            ->layout(FRONTEND_LAYOUT,['seoTitle' => 'Contact Us']);
+            ->layout(FRONTEND_LAYOUT,$this->seo);
     }
 }

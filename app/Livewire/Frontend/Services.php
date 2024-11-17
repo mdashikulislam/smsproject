@@ -22,6 +22,7 @@ class Services extends Component
     public $finalPrice = 0;
     public $purchaseData = [];
     public $basePrice = 0;
+    public $seo = [];
     public function buy(SingleService $singleService)
     {
         $this->refreshInitData();
@@ -42,11 +43,10 @@ class Services extends Component
     public function purchase()
     {
 
-
-
     }
     public function mount()
     {
+        $this->seo = getSeo(SERVICES_SLUG);
         $this->currentUser = auth()->user();
         $this->setting = Setting::first();
         $this->refreshInitData();
@@ -135,7 +135,7 @@ class Services extends Component
             $services = $services->orderByDesc('is_other_site')->orderByDesc('id')->get();
         }
         return view('livewire.frontend.services')
-            ->layout('frontend.layouts.app',['seoTitle' => 'Services'])
+            ->layout(FRONTEND_LAYOUT,$this->seo)
             ->with([
                 'services' => $services
             ]);

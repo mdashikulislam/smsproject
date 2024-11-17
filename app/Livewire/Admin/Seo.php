@@ -5,34 +5,27 @@ namespace App\Livewire\Admin;
 use App\Traits\CustomDatatable;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
-use App\Models\Cms as CmsModel;
-class Cms extends Component
+use \App\Models\Seo as SeoModel;
+class Seo extends Component
 {
     use CustomDatatable;
     public $showEditModal;
     public $state = [];
-    protected $listeners = ['delete'];
     public $itemId;
-    public function boot()
-    {
-        $this->setModel(CmsModel::class);
-    }
+    protected $listeners = ['delete'];
     public function mount()
     {
-        $this->dispatch('editor-load');
+        $this->showEditModal = false;
         $this->initState();
     }
-
     public function initState()
     {
         $this->state = [
             'title' => '',
             'slug' => '',
-            'content'=>'',
             'seo_title'=>'',
             'seo_description'=>'',
             'seo_keyword'=>'',
@@ -43,54 +36,46 @@ class Cms extends Component
         $this->state['slug'] = Str::slug($this->state['title']);
         if ($this->showEditModal){
             Validator::make($this->state,[
-                'slug' => ['unique:cms,slug,'.$this->itemId],
+                'slug' => ['unique:seos,slug,'.$this->itemId],
             ])->validate();
         }else{
             Validator::make($this->state,[
-                'slug' => ['unique:cms,slug'],
+                'slug' => ['unique:seos,slug'],
             ])->validate();
         }
 
     }
-    public function getData()
-    {
-        return CmsModel::orderBy($this->sortBy,$this->orderBy)->paginate($this->perPage);
-    }
-
     public function addNew()
     {
-        $this->showEditModal = false;
         $this->initState();
-        $this->dispatch('editor-load');
-        $this->dispatch('update-ckeditor');
+        $this->showEditModal = false;
         $this->dispatch('show-modal', id: 'curdModal');
     }
-
 
     public function store()
     {
         Validator::make($this->state, [
             'title' => ['required', 'string','max:255'],
-            'slug' => ['required', 'string','unique:cms,slug'],
+            'slug' => ['required', 'string','unique:seos,slug'],
             'seo_title' => ['nullable', 'string','max:255'],
             'seo_description' => ['nullable', 'string'],
             'seo_keyword' => ['string', 'nullable'],
         ])->validate();
-        $cms = CmsModel::create($this->state);
-        if ($cms){
+        $seo = SeoModel::create($this->state);
+        if ($seo){
             $this->dispatch('hide-modal',id:'curdModal');
-            $this->dispatch('toast',type:'success',message:'Cms create successfully');
+            $this->dispatch('toast',type:'success',message:'Seo create successfully');
             $this->initState();
         }else{
-            $this->dispatch('toast',type:'error',message:'Cms not created');
+            $this->dispatch('toast',type:'error',message:'Seo not created');
         }
     }
-    public function edit(CmsModel $cms)
+
+    public function edit(SeoModel $seo)
     {
         $this->showEditModal = true;
-        $this->itemId = $cms->id;
-        $this->state = $cms->toArray();
-        $this->dispatch('update-ckeditor');
+        $this->itemId = $seo->id;
+        $this->state = $seo->toArray();
         $this->dispatch('show-modal', id: 'curdModal');
     }
 
@@ -98,37 +83,43 @@ class Cms extends Component
     {
         Validator::make($this->state, [
             'title' => ['required', 'string','max:255'],
-            'slug' => ['required', 'string','unique:cms,slug,'.$this->itemId],
+            'slug' => ['required', 'string','unique:seos,slug,'.$this->itemId],
             'seo_title' => ['nullable', 'string','max:255'],
             'seo_description' => ['nullable', 'string'],
             'seo_keyword' => ['string', 'nullable'],
         ])->validate();
-        $cms = CmsModel::find($this->itemId);
-        $cms->update($this->state);
-        if ($cms){
+        $seo = SeoModel::find($this->itemId);
+        $seo->update($this->state);
+        if ($seo){
             $this->dispatch('hide-modal',id:'curdModal');
-            $this->dispatch('toast',type:'success',message:'Cms updated successfully');
+            $this->dispatch('toast',type:'success',message:'Seo updated successfully');
             $this->initState();
         }else{
-            $this->dispatch('toast',type:'error',message:'Cms not created');
+            $this->dispatch('toast',type:'error',message:'Seo not updated');
         }
     }
-    public function delete(CmsModel $cms)
+
+    public function delete(SeoModel $seo)
     {
-        $delete = $cms->delete();
+        $delete = $seo->delete();
         if ($delete){
-            $this->dispatch('toast',type:'success',message:'Cms deleted successfully');
+            $this->dispatch('toast',type:'success',message:'Seo deleted successfully');
         }else{
-            $this->dispatch('toast',type:'error',message:'Cms not deleted');
+            $this->dispatch('toast',type:'error',message:'Seo not deleted');
         }
     }
+    public function getData()
+    {
+        return SeoModel::orderBy($this->sortBy,$this->orderBy)->paginate($this->perPage);
+    }
+
     #[Layout(ADMIN_LAYOUT)]
-    #[Title('Cms')]
+    #[Title('Seo')]
     public function render()
     {
-        return view('livewire.admin.cms')
+        return view('livewire.admin.seo')
             ->with([
-                'cmsData' => $this->getData(),
+                'seoData'=>$this->getData(),
             ]);
     }
 }

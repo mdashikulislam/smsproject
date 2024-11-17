@@ -10,12 +10,14 @@ use Spatie\Permission\Models\Role;
 class Register extends Component
 {
     public $name,$email,$password,$password_confirmation;
+    public $seo = [];
     protected $rules = [
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
     ];
     public function mount() {
+        $this->seo = getSeo(REGISTER_SLUG);
         if(auth()->user()){
             return $this->redirect('/', navigate: true);
         }
@@ -38,6 +40,6 @@ class Register extends Component
     }
     public function render()
     {
-        return view('livewire.auth.register',)->layout(FRONTEND_LAYOUT, ['seoTitle' =>'Register']);
+        return view('livewire.auth.register',)->layout(FRONTEND_LAYOUT, $this->seo);
     }
 }

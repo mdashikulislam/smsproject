@@ -10,11 +10,15 @@ class Login extends Component
     public $email;
     public $password;
     public $remember_me;
-
+    public $seo = [];
     protected $rules = [
         'email' => ['required','email','string'],
         'password' => ['required','min:8'],
     ];
+    public function mount()
+    {
+        $this->seo = getSeo(LOGIN_SLUG);
+    }
 
     public function login()
     {
@@ -39,6 +43,7 @@ class Login extends Component
     }
     public function render()
     {
-        return view('livewire.auth.login')->layout(FRONTEND_LAYOUT,['seoTitle' => $this->pageTitle]);
+        return view('livewire.auth.login')
+            ->layout(FRONTEND_LAYOUT,$this->seo);
     }
 }

@@ -9,6 +9,7 @@ use \App\Livewire\Admin\Customer;
 use \App\Livewire\Admin\Cms;
 use \App\Livewire\Admin\Setting;
 use \App\Livewire\Admin\Coupon;
+use \App\Livewire\Admin\Seo;
 use \App\Livewire\Admin\AccessControl\Role;
 use \App\Livewire\Admin\AccessControl\ManageAdmin;
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
@@ -23,6 +24,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('phone-number-list',PhoneNumberList::class)->name('phone-number-list');
     Route::get('customers',Customer::class)->name('customers');
     Route::get('cms',Cms::class)->name('cms');
+    Route::get('seo',Seo::class)->name('seo');
     Route::get('settings',Setting::class)->name('settings');
     Route::get('coupons',Coupon::class)->name('coupons');
 });

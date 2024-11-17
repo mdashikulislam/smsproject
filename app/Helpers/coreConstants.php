@@ -18,7 +18,16 @@ const SERVER_STATUS = ['Online', 'Offline'];
 const COUPON_TYPE_ARRAY = ['Fixed', 'Percentage'];
 const COUPON_USE_TYPE_ARRAY = ['Single', 'Multiple'];
 const COUPON_ELIGIBLE_ARRAY = ['All', 'New','Old'];
+
+//Url Slug constant
 const TERMS_AND_CONDITION_SLUG = 'terms-and-condition';
 const COOKIE_POLICY_SLUG = 'cookie-policy';
 const REFUND_POLICY_SLUG = 'refund-policy';
 const PRIVACY_POLICY_SLUG = 'privacy-policy';
+const LOGIN_SLUG = 'login';
+const REGISTER_SLUG = 'register';
+const HOME_SLUG = '/';
+const FREE_SMS_SLUG = 'free-sms';
+const CONTACT_US_SLUG = 'contact-us';
+const SERVICES_SLUG = 'services';
+const PRICING_SLUG = 'pricing';
