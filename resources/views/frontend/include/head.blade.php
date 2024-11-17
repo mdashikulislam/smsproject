@@ -4,15 +4,12 @@
     <title>{{ @$seoTitle}} | {{env('APP_NAME')}}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     @if(isset($seoDescription))
-        <meta name="description" content="{{$seoDescription}}">
+    <meta name="description" content="{{$seoDescription}}">
     @endif
     @if(isset($seoKeyword))
-        <meta name="keywords" content="{{$seoKeyword}}">
+    <meta name="keywords" content="{{$seoKeyword}}">
     @endif
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link
         rel="shortcut icon"
         type="image/x-icon"

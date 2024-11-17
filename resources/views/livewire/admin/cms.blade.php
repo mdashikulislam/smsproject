@@ -55,7 +55,9 @@
                                 <td>
                                     <div class="btn-group">
                                         <a   href='#' wire:click.prevent='edit({{$data->id}})' class='btn btn-sm btn-success text-white'> <i class='fas fa-edit'></i></a>
+                                        @if($data->is_default !='1')
                                         <a   href='#' onclick="confirmDelete({{ $data->id }})" class='btn btn-sm btn-danger text-white'><i class='fas fa-trash'></i></a>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -112,16 +114,16 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Seo Description</label>
-                            <textarea wire:model="state.seo_description" class="form-control @error('seo_description') is-invalid @enderror"></textarea>
-                            @error('seo_description')
+                            <label class="form-label">Seo Keyword</label>
+                            <textarea wire:model="state.seo_keyword" class="form-control @error('seo_keyword') is-invalid @enderror"></textarea>
+                            @error('seo_keyword')
                             <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Seo Description</label>
-                            <textarea wire:model="state.seo_keyword" class="form-control @error('seo_keyword') is-invalid @enderror"></textarea>
-                            @error('seo_keyword')
+                            <textarea wire:model="state.seo_description" class="form-control @error('seo_description') is-invalid @enderror"></textarea>
+                            @error('seo_description')
                             <span class="invalid-feedback d-block" role="alert">{{$message}}</span>
                             @enderror
                         </div>
@@ -157,7 +159,8 @@
                 });
             });
             window.addEventListener('update-ckeditor',function (){
-               editor.setData(@this.state.content);
+                const content = @this.state.content;
+                editor.setData(content ? content : '');
             });
         </script>
     @endpush

@@ -23,6 +23,10 @@ class Page extends Component
         return view('livewire.frontend.page')
             ->layout(FRONTEND_LAYOUT,[
                 'seoTitle' => $page->seo_title,
+                'seoKeyword' => $page->seo_keyword,
+                'seoDescription' => $page->seo_description,
+            ])->with([
+                'page' => $page,
             ]);
     }
 }
