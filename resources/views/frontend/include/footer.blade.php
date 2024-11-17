@@ -83,13 +83,13 @@
                                 <div class="footer-menu-link">
                                     <ul class="list-unstyled">
                                         <li>
-                                            <a href="free-sms.html">
+                                            <a wire:navigate href="{{route('free-sms')}}">
                                                 Free SMS
                                             </a>
                                         </li>
                                         <li>
-                                            <a
-                                                href="single-service.html"
+                                            <a wire:navigate
+                                                href="{{route('services')}}"
                                             >
                                                 Single Service
                                             </a>
@@ -111,7 +111,7 @@
                                 <div class="footer-menu-link">
                                     <ul class="list-unstyled">
                                         <li>
-                                            <a href="contact.html">
+                                            <a wire:navigate href="{{route('contact-us')}}">
                                                 Contact
                                             </a>
                                         </li>
@@ -140,29 +140,29 @@
                                 <div class="footer-menu-link">
                                     <ul class="list-unstyled">
                                         <li>
-                                            <a
-                                                href="privacy-policy.html"
+                                            <a wire:navigate
+                                                href="{{route('page',['slug'=>PRIVACY_POLICY_SLUG])}}"
                                             >
                                                 Privacy Policy
                                             </a>
                                         </li>
                                         <li>
-                                            <a
-                                                href="terms-of-use.html"
+                                            <a wire:navigate
+                                                href="{{route('page',['slug'=>TERMS_AND_CONDITION_SLUG])}}"
                                             >
                                                 Terms of Use
                                             </a>
                                         </li>
                                         <li>
-                                            <a
-                                                href="cookies-policy.html"
+                                            <a wire:navigate
+                                                href="{{route('page',['slug'=>COOKIE_POLICY_SLUG])}}"
                                             >
                                                 Cookies Policy
                                             </a>
                                         </li>
                                         <li>
-                                            <a
-                                                href="refund-policy.html"
+                                            <a wire:navigate
+                                                href="{{route('page',['slug'=>REFUND_POLICY_SLUG])}}"
                                             >
                                                 Refund Policy
                                             </a>

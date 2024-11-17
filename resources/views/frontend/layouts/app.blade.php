@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-
 @include('frontend.include.head')
-
 <body class="sticky-header">
 <a href="#main-wrapper" id="backto-top" class="back-to-top">
     <i class="fas fa-angle-double-up"></i>

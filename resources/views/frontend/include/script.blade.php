@@ -12,6 +12,15 @@
 <script src="{{asset('frontend/assets/js/app.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    document.addEventListener('livewire:init', () => {
+        Livewire.hook('request', ({ fail }) => {
+            fail(({ status, preventDefault }) => {
+                if (status === 419) {
+                    window.location.reload();
+                }
+            })
+        })
+    });
     window.addEventListener('toast',event =>{
         const Toast = Swal.mixin({
             toast: true,

@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class FreeSms extends Component
 {
+
     public function render()
     {
         $freeSims = Sim::where('type','Free')->get();
