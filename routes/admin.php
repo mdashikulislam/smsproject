@@ -22,7 +22,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     });
     Route::get('message-list',MessageList::class)->name('message-list');
     Route::get('phone-number-list',PhoneNumberList::class)->name('phone-number-list');
-    Route::get('customers',Customer::class)->name('customers');
+    Route::get('customers',Customer::class)->name('customers')->permission('customer.list');
     Route::get('cms',Cms::class)->name('cms');
     Route::get('seo',Seo::class)->name('seo');
     Route::get('settings',Setting::class)->name('settings');
