@@ -96,19 +96,6 @@ class SingleService extends Component
            $this->dispatch('toast',type:'error',message:'Service not deleted');
        }
     }
-    public function dataTable()
-    {
-        return DataTables::of(SingleServiceModel::query())
-            ->addColumn('action',function ($q){
-                $html = '<div class="btn-group">';
-                $html .= "<a   href='#' wire:click.prevent='edit({$q->id})' class='btn btn-sm btn-warning text-white'> <i class='fas fa-edit'></i></a>";
-                $html .= "<a   href='#' class='btn btn-sm btn-danger text-white'><i class='fas fa-trash'></i></a>";
-                $html .= "</div>";
-                return $html;
-            })
-            ->rawColumns(['action'])
-            ->make(true);
-    }
 
     public function getData()
     {

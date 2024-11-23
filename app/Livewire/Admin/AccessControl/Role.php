@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\AccessControl;
 
 use App\Traits\CustomDatatable;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -89,11 +90,14 @@ class Role extends Component
             $this->dispatch('toast',type:'error',message:'Role not deleted');
         }
     }
+
     public function getData()
     {
         return RoleModel::when(!empty($this->search),function ($query){
             $query->search('name', $this->search);
-        })->withCount('users')->orderBy($this->sortBy, $this->orderBy)->paginate($this->perPage);
+        })->withCount('users')
+            ->orderBy($this->sortBy, $this->orderBy)
+            ->paginate($this->perPage);
     }
     #[Layout(ADMIN_LAYOUT)]
     #[Title('Manage Role')]

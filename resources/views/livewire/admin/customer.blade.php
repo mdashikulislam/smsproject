@@ -11,7 +11,9 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <h3>Customer List</h3>
+                        @can('customer.create')
                         <a href="" wire:click.prevent="addNew" class="btn btn-primary btn-sm btn-icon-text"><i class="fas fa-plus fa-fw" ></i>Add New</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body">

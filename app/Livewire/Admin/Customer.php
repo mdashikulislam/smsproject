@@ -12,6 +12,10 @@ class Customer extends Component
 {
     use CustomDatatable;
 
+    public function addNew()
+    {
+
+    }
     public function getData()
     {
         return User::with('roles')
