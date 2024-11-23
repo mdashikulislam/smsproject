@@ -15,7 +15,8 @@ Route::get('services',\App\Livewire\Frontend\Services::class)->name('services');
 Route::get('contact-us',\App\Livewire\Frontend\ContactUs::class)->name('contact-us');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('{slug}',\App\Livewire\Frontend\Page::class)->name('page');
-//require __DIR__.'/admin.php';
+
+
 Route::get('test',function (){
    return \Spatie\Permission\Models\Permission::all();
 });

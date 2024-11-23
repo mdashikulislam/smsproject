@@ -11,18 +11,22 @@
     </div>
     <div class="sidebar-body">
         <ul class="nav">
+            @can('dashboard')
             <li class="nav-item">
                 <a wire:navigate  href="{{route('admin.dashboard')}}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Dashboard</span>
                 </a>
             </li>
+            @endcan
+            @can('customer.list')
             <li class="nav-item">
                 <a wire:navigate  href="{{route('admin.customers')}}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Customer List</span>
                 </a>
             </li>
+            @endcan
             <li class="nav-item">
                 <a wire:navigate  href="{{route('admin.phone-number-list')}}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>

@@ -13,7 +13,7 @@ use \App\Livewire\Admin\Seo;
 use \App\Livewire\Admin\AccessControl\Role;
 use \App\Livewire\Admin\AccessControl\ManageAdmin;
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
-    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard')->permission('dashboard');
     Route::get('/single-service',SingleService::class)->name('single-service');
     Route::get('/single-service/datatable', [SingleService::class, 'datatable'])->name('single-service.datatable');
     Route::prefix('access-control')->name('access-control.')->group(function () {

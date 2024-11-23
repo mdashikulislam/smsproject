@@ -20,6 +20,15 @@ class RolePermissionSeeder extends Seeder
         }
         $permissions = [
             [
+                'groupName'=>'Dashboard',
+                'permission'=>[
+                    [
+                        'label'=>'Dashboard',
+                        'name'=>'dashboard'
+                    ],
+                ]
+            ],
+            [
                 'groupName'=>'Customer List',
                 'permission'=>[
                     [
