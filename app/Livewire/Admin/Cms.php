@@ -23,7 +23,6 @@ class Cms extends Component
     }
     public function mount()
     {
-        $this->dispatch('editor-load');
         $this->initState();
     }
 
@@ -50,11 +49,13 @@ class Cms extends Component
                 'slug' => ['unique:cms,slug'],
             ])->validate();
         }
-
     }
     public function getData()
     {
-        return CmsModel::orderBy($this->sortBy,$this->orderBy)->paginate($this->perPage);
+        return CmsModel::when(!empty($this->search),function ($query){
+            $query->search('title',$this->search)->orSearch('slug',$this->search);
+
+        })->orderBy($this->sortBy,$this->orderBy)->paginate($this->perPage);
     }
 
     public function addNew()

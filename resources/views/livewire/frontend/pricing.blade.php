@@ -58,16 +58,78 @@
                 >
                     <div class="pricing-table active pricing-borderd">
                         <div class="pricing-header">
-                            <h3 class="title">Day</h3>
-                            <span class="subtitle">
-                                        Number Valid for 1 Day
-                                    </span>
+                            <h3 class="title">Service</h3>
+                            <span class="subtitle">Number Valid for 10 Minutes</span>
                             <div class="price-wrap">
                                 <div class="monthly-pricing">
-                                    <span class="amount">£1.50 </span>
-                                    <span class="duration">
-                                                20% save
+                                    <span class="amount">£0.50 </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pricing-body">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <i class="far fa-check-circle"></i>
+                                    Real UK Number
+                                </li>
+                                <li>
+                                    <i class="far fa-check-circle"></i>
+                                    New Unused UK Number
+                                </li>
+                                <li>
+                                    <i class="far fa-times-circle text-danger"></i>
+                                    Receive Unlimited SMS Globally
+                                </li>
+                                <li>
+                                    <i class="far fa-check-circle"></i>
+                                    Number Issued Instantly
+                                </li>
+                                <li>
+                                    <i class="far fa-check-circle"></i>
+                                    All SMS are Private / Only Viewable
+                                    By Yourself
+                                </li>
+                                <li>
+                                    <i class="far fa-times-circle text-danger"></i>
+                                    Able To Renew / Extend Number
+                                </li>
+                                <li>
+                                    <i class="far fa-check-circle"></i>
+                                    <span>
+                                                <strong>Warranty: </strong>24
+                                                Hour Money Back
                                             </span>
+                                </li>
+                                <li>
+                                    <i class="far fa-times-circle text-danger"></i>
+                                    1 Day Free Premium Plan
+                                </li>
+                            </ul>
+                            <div class="pricing-btn">
+                                <a
+                                    wire:navigate
+                                    href="{{route('services')}}"
+                                    class="sms-btn btn-large btn-borderd"
+                                >
+                                    View More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="col-xl-4 col-md-6 col-12"
+                    data-sal="slide-up"
+                    data-sal-duration="800"
+                    data-sal-delay="200"
+                >
+                    <div class="pricing-table pricing-borderd">
+                        <div class="pricing-header">
+                            <h3 class="title">Day</h3>
+                            <span class="subtitle">Number Valid for 1 Day</span>
+                            <div class="price-wrap">
+                                <div class="monthly-pricing">
+                                    <span class="amount">£1.95 </span>
                                 </div>
                             </div>
                         </div>
@@ -106,8 +168,10 @@
                                             </span>
                                 </li>
                                 <li>
-                                    <i class="far fa-check-circle"></i>
-                                    1 Day Free Premium Plan
+                                    <i class="far fa-times-circle text-danger"></i>
+                                    <span>
+                                                1 Day Free Premium Plan
+                                            </span>
                                 </li>
                             </ul>
                             <div class="pricing-btn">
@@ -131,15 +195,10 @@
                     <div class="pricing-table pricing-borderd">
                         <div class="pricing-header">
                             <h3 class="title">Week</h3>
-                            <span class="subtitle">
-                                        Number Valid for 7 Days
-                                    </span>
+                            <span class="subtitle">Number Valid for 7 Days</span>
                             <div class="price-wrap">
                                 <div class="monthly-pricing">
                                     <span class="amount">£5.00 </span>
-                                    <span class="duration">
-                                                / save 20%
-                                            </span>
                                 </div>
                             </div>
                         </div>
@@ -211,9 +270,6 @@
                             <div class="price-wrap">
                                 <div class="monthly-pricing">
                                     <span class="amount">£15.00 </span>
-                                    <span class="duration">
-                                                / save 20%
-                                            </span>
                                 </div>
                             </div>
                         </div>

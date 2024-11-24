@@ -148,6 +148,7 @@
         <script>
             let editor;
             window.addEventListener('editor-load', function () {
+                console.log('editor-load')
                 if (CKEDITOR.instances['editor']) {
                     CKEDITOR.instances['editor'].destroy(true);
                 }

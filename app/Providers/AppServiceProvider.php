@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Spatie\Permission\Models\Role;
-
+use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\Telegram\TelegramExtendSocialite;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -22,8 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //Blade::component('frontend.layouts.app', 'frontend-layout');
-        //Blade::component('admin.layouts.app', 'admin-layout');
+//        if (app()->environment('local')) {
+//            URL::forceScheme('https');
+//        }
 
         Builder::macro('search', function ($field, $string) {
             return $string ? $this->where($field, 'like', '%' . $string . '%') : $this;
@@ -32,5 +35,6 @@ class AppServiceProvider extends ServiceProvider
         Builder::macro('orSearch', function ($field, $string) {
             return $string ? $this->orWhere($field, 'like', '%' . $string . '%') : $this;
         });
+
     }
 }

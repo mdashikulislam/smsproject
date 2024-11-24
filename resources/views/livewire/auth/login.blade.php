@@ -84,7 +84,6 @@
                                         <span wire:loading class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         {{ __('Login') }}
                                     </button>
-
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
@@ -99,3 +98,4 @@
         </div>
     </div>
 </div>
+
