@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 

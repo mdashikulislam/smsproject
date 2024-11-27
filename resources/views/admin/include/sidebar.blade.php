@@ -40,6 +40,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a wire:navigate  href="{{route('admin.seo')}}" class="nav-link">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Seo</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a wire:navigate  href="{{route('admin.cms')}}" class="nav-link">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Cms</span>

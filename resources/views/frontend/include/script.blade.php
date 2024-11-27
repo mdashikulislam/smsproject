@@ -1,7 +1,7 @@
 @livewireScripts
 <!-- Jquery Js -->
 <script src="{{asset('frontend/assets/js/jquery-3.6.0.min.js')}}"></script>
-<script src="{{asset('frontend/assets/js/bootstrap.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="{{asset('frontend/assets/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('frontend/assets/js/slick.min.js')}}"></script>
 <script src="{{asset('frontend/assets/js/sal.js')}}"></script>
