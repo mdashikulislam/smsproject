@@ -2,7 +2,7 @@
 const ADMIN = 'Admin';
 const USER = 'User';
 const DEVELOPER = 'Developer';
-const DEFAULT_ROLE = [ADMIN, USER,DEVELOPER];
+const DEFAULT_ROLE = [ADMIN,USER,DEVELOPER];
 const FRONTEND_LAYOUT = 'frontend.layouts.app';
 const ADMIN_LAYOUT = 'admin.layouts.app';
 const STATUS_ENABLED = 1;
@@ -12,6 +12,13 @@ const STATUS_ARRAY = [
     1 =>'Active',
     0 =>'Inactive',
 ];
+const PACKAGE_NAME = [
+    1=>'1 Day',
+    7=>'1 Week',
+    30=>'1 Month',
+];
+const DEFAULT_SIM_QUANTITY = 1;
+
 
 const DATATABLE_SHOW_ITEM_ARRAY = [10, 20, 50, 100, 500];
 const SERVER_STATUS = ['Online', 'Offline'];
@@ -31,3 +38,4 @@ const FREE_SMS_SLUG = 'free-sms';
 const CONTACT_US_SLUG = 'contact-us';
 const SERVICES_SLUG = 'services';
 const PRICING_SLUG = 'pricing';
+const RELOAD_SLUG = 'reload';

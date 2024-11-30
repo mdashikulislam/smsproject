@@ -63,3 +63,41 @@ function getSeo($slug)
         return  ['seoTitle' =>'','seoDescription' => '','seoKeyword' => ''];
     }
 }
+
+function getPackageInfo($duration)
+{
+    if ($duration == 1){
+        return [
+            'name'=>'1 Day',
+            'duration'=>'1',
+            'duration_text'=>'1 Day',
+            'price'=>'1.95',
+        ];
+    }elseif ($duration == 7){
+        return [
+            'name'=>'1 Week',
+            'duration'=>'7',
+            'duration_text'=>'7 Days',
+            'price'=>'5.00',
+        ];
+    }elseif ($duration == 30){
+        return [
+            'name'=>'1 Month',
+            'duration'=>'30',
+            'duration_text'=>'30 Days',
+            'price'=>'15.00',
+        ];
+    }else{
+        return [
+            'name'=>'',
+            'duration'=>'',
+            'duration_text'=>'',
+            'price'=>'',
+        ];
+    }
+}
+
+function makeSimApiUrl($slug)
+{
+    return env('SIM_API').$slug;
+}

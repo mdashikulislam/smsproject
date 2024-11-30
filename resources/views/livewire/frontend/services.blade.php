@@ -58,6 +58,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <h4 class="text-center">Buy {!! $singleService['name'] !!} Service</h4>
+
                     <ul class="buy-modal-item">
                         <li>
                             <span>Network Type</span>

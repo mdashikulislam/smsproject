@@ -1,3 +1,3 @@
 <li>
-    <a class="#" href="#" wire:click.prevent="logout">Logout</a>
+    <a  class="dropdown-item" href="#" wire:click.prevent="logout">Logout</a>
 </li>

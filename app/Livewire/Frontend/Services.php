@@ -71,8 +71,7 @@ class Services extends Component
     }
     public function calculateCoupon()
     {
-//        $this->activeCoupon = [];
-//        $this->finalPrice = $this->basePrice;
+
         $this->clearValidation();
         $couponResult = Coupon::with('users')->where('code',$this->coupon)->first();
         if (empty($couponResult)){

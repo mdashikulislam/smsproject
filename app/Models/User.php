@@ -21,7 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'status'
+        'status',
+        'is_new',
+        'total_balance',
+        'available_balance',
+        'withdraw_balance'
     ];
 
     /**

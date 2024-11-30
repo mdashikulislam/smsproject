@@ -19,6 +19,15 @@ return new class extends Migration
             $table->string('password');
             $table->tinyInteger('status')->default(1);
             $table->tinyInteger('is_new')->default(1);
+            $table->decimal('total_balance',10,2)->default(0);
+            $table->decimal('available_balance',10,2)->default(0);
+            $table->decimal('withdraw_balance',10,2)->default(0);
+            $table->decimal('discount',10,2)->default(0);
+            $table->string('referral_code',20)->index()->nullable();
+            $table->decimal('commission',10,2)->default(0);
+            $table->decimal('user_discount',10,2)->default(0);
+            $table->integer('max_referral')->default(0);
+            $table->integer('total_referral')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
