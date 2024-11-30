@@ -103,7 +103,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        <span wire:loading class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        <span wire:loading wire:target="register" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         {{ __('Register') }}
                                     </button>
                                     @if (Route::has('login'))

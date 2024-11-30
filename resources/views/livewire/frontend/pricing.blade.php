@@ -402,7 +402,7 @@
                     </ul>
                     <div class="text-center">
                         <button wire:click.prevent="purchase" style="padding: 10px 15px" type="submit" class="sms-btn btn-sm btn-fill-primary">
-                            <span wire:loading class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span wire:loading wire:target="purchase" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                             Buy Now
                         </button>
                     </div>

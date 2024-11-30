@@ -18,7 +18,8 @@ const PACKAGE_NAME = [
     30=>'1 Month',
 ];
 const DEFAULT_SIM_QUANTITY = 1;
-
+const DEFAULT_SIM_COST = 1.5;
+const SIM_TYPE_PAID = 'Paid';
 
 const DATATABLE_SHOW_ITEM_ARRAY = [10, 20, 50, 100, 500];
 const SERVER_STATUS = ['Online', 'Offline'];

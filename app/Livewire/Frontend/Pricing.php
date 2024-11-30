@@ -5,6 +5,8 @@ namespace App\Livewire\Frontend;
 use App\Models\Coupon;
 use App\Models\CouponHistory;
 use App\Models\Setting;
+use App\Models\Sim;
+use App\Models\UserSim;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -107,20 +109,52 @@ class Pricing extends Component
              session()->flash('error', 'You don\'t have enough balance to buy this package. Please reload balance.');
              return;
         }
-
-
         $apiUrl = makeSimApiUrl('buy-sim.php');
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
         ])->withBasicAuth(env('SIM_API_USERNAME'), env('SIM_API_PASSWORD'))
-            ->post($apiUrl, json_encode([
-                'key1' => 'value1',
-                'key2' => 'value2',
-            ]));
+            ->asForm()->post($apiUrl, [
+                'qty' => DEFAULT_SIM_QUANTITY,
+                'duration' => $this->package['duration'],
+            ]);
 
-        dd($response->body());
+        if (!$response->successful()) {
+            \session()->put('error', 'Something went wrong, please try again later.');
+            return;
+        }
+
+        $responseData = $response->json();
+        if (isset($responseData['data'][0])) {
+            $simData = $responseData['data'][0];
+            \DB::beginTransaction();
+            try {
+                $sim = Sim::where('imsi', $simData['imsi'])->first();
+                if (empty($sim)) {
+                    $sim = new Sim();
+                    $sim->imsi = $simData['imsi'];
+                    $sim->phone_number = $simData['phone_no'];
+                    $sim->type = SIM_TYPE_PAID;
+                    $sim->network_type = $simData['network_type'];
+                    $sim->save();
+                }
+                $userSim = new UserSim();
+                $userSim->user_id = $this->currentUser->id;
+                $userSim->sim_cost = @$this->setting->sim_cost ?? DEFAULT_SIM_COST;
+                $userSim->sim_id = $sim->id;
+                $userSim->start_date = $simData['start_date'];
+                $userSim->end_date = $simData['end_date'];
+                $userSim->amount = $this->finalPrice;
+                $userSim->save();
+                \DB::commit();
+                \session()->put('success', 'Your purchase was successful');
+            } catch (\Exception $exception) {
+                \DB::rollBack();
+                \session()->put('error', $exception->getMessage());
+            }
+        }
+        return;
     }
     public function removeValidation()
     {
