@@ -43,13 +43,10 @@
                                 </div>
                             </th>
                             <th>
-                                @include('admin.include.table-sortable-header',['title'=>'Com Port','name'=>'rec_time'])
+                                @include('admin.include.table-sortable-header',['title'=>'IMSI','name'=>'imsi'])
                             </th>
                             <th>
                                 @include('admin.include.table-sortable-header',['title'=>'Sim','name'=>'phone_number'])
-                            </th>
-                            <th>
-                                @include('admin.include.table-sortable-header',['title'=>'IMSI','name'=>'imsi'])
                             </th>
                             <th>
                                 @include('admin.include.table-sortable-header',['title'=>'Type','name'=>'type'])
@@ -100,9 +97,8 @@
                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     </div>
                                 </td>
-                                <td>M{{$data->machine}} S{{$data->slot}} {{$data->com_port}} ({{$data->computer}}) [{{getNetworkType($data->network_type)}}]</td>
-                                <td>{{$data->phone_number}}</td>
                                 <td>{{$data->imsi}}</td>
+                                <td>{{$data->phone_number}}</td>
                                 <td>{{$data->type}}</td>
                                 <td></td>
                                 <td class="{{$class}}">{{$status}}</td>

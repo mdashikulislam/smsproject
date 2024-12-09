@@ -74,16 +74,13 @@
                                     </li>
                                 @endif
                             @else
-                                <li class="auth-btn">
-                                    <a wire:navigate href="{{route('reload')}}">
-                                        Reload
-                                    </a>
-                                </li>
+                                @can('dashboard')
                                 <li class="auth-btn">
                                     <a href="{{route('admin.dashboard')}}">
                                         Dashboard
                                     </a>
                                 </li>
+                                @endcan
                             @endguest
                         </ul>
                     </nav>

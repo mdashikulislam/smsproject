@@ -13,7 +13,10 @@ Route::get('free-sms',\App\Livewire\Frontend\FreeSms::class)->name('free-sms');
 Route::get('pricing',\App\Livewire\Frontend\Pricing::class)->name('pricing');
 Route::get('services',\App\Livewire\Frontend\Services::class)->name('services');
 Route::get('contact-us',\App\Livewire\Frontend\ContactUs::class)->name('contact-us');
-Route::get(RELOAD_SLUG,\App\Livewire\Frontend\Reload::class)->name('reload');
+Route::middleware('auth')->group(function (){
+    Route::get(RELOAD_SLUG,\App\Livewire\Frontend\Reload::class)->name('reload');
+});
+
 
 Route::get('test',[\App\Http\Controllers\HomeController::class,'test']);
 
