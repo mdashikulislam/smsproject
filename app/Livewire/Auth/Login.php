@@ -1,5 +1,6 @@
 <?php
 namespace App\Livewire\Auth;
+use App\Constants\AppConstants;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +19,7 @@ class Login extends Component
     ];
     public function mount()
     {
-        $this->seo = getSeo(LOGIN_SLUG);
+        $this->seo = getSeo(AppConstants::LOGIN_SLUG);
     }
 
     public function login()

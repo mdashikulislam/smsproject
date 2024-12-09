@@ -68,7 +68,7 @@
                         </li>
                         <li>
                             <span>Duration</span>
-                            <strong>{{SINGLE_SERVICE_DURATION}}</strong>
+                            <strong>{{\App\Constants\AppConstants::SINGLE_SERVICE_DURATION}}</strong>
                         </li>
                         <li>
                             <span>Price</span>

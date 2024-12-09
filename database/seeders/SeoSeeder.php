@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Constants\AppConstants;
 use App\Models\Seo;
 use Illuminate\Database\Seeder;
 
@@ -12,31 +13,31 @@ class SeoSeeder extends Seeder
         $defaultPage = [
             [
                 'title'=>'Home',
-                'slug'=>HOME_SLUG
+                'slug'=>AppConstants::HOME_SLUG
             ],
             [
                 'title'=>'Free Sms',
-                'slug'=>FREE_SMS_SLUG
+                'slug'=>AppConstants::FREE_SMS_SLUG
             ],
             [
                 'title'=>'Pricing',
-                'slug'=>PRICING_SLUG
+                'slug'=>AppConstants::PRICING_SLUG
             ],
             [
                 'title'=>'Services',
-                'slug'=>SERVICES_SLUG
+                'slug'=>AppConstants::SERVICES_SLUG
             ],
             [
                 'title'=>'Contact Us',
-                'slug'=>CONTACT_US_SLUG
+                'slug'=>AppConstants::CONTACT_US_SLUG
             ],
             [
                 'title'=>'Login',
-                'slug'=>LOGIN_SLUG
+                'slug'=>AppConstants::LOGIN_SLUG
             ],
             [
                 'title'=>'Register',
-                'slug'=>REGISTER_SLUG
+                'slug'=>AppConstants::REGISTER_SLUG
             ],
 
         ];

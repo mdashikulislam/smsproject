@@ -141,28 +141,28 @@
                                     <ul class="list-unstyled">
                                         <li>
                                             <a wire:navigate
-                                                href="{{route('page',['slug'=>PRIVACY_POLICY_SLUG])}}"
+                                                href="{{route('page',['slug'=>\App\Constants\AppConstants::PRIVACY_POLICY_SLUG])}}"
                                             >
                                                 Privacy Policy
                                             </a>
                                         </li>
                                         <li>
                                             <a wire:navigate
-                                                href="{{route('page',['slug'=>TERMS_AND_CONDITION_SLUG])}}"
+                                                href="{{route('page',['slug'=>\App\Constants\AppConstants::TERMS_AND_CONDITION_SLUG])}}"
                                             >
                                                 Terms of Use
                                             </a>
                                         </li>
                                         <li>
                                             <a wire:navigate
-                                                href="{{route('page',['slug'=>COOKIE_POLICY_SLUG])}}"
+                                                href="{{route('page',['slug'=>\App\Constants\AppConstants::COOKIE_POLICY_SLUG])}}"
                                             >
                                                 Cookies Policy
                                             </a>
                                         </li>
                                         <li>
                                             <a wire:navigate
-                                                href="{{route('page',['slug'=>REFUND_POLICY_SLUG])}}"
+                                                href="{{route('page',['slug'=>\App\Constants\AppConstants::REFUND_POLICY_SLUG])}}"
                                             >
                                                 Refund Policy
                                             </a>

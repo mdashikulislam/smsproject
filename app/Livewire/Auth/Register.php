@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Auth;
 
+use App\Constants\AppConstants;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
@@ -17,7 +18,7 @@ class Register extends Component
         'password' => ['required', 'string', 'min:8', 'confirmed'],
     ];
     public function mount() {
-        $this->seo = getSeo(REGISTER_SLUG);
+        $this->seo = getSeo(AppConstants::REGISTER_SLUG);
         if(auth()->user()){
             return $this->redirect('/', navigate: true);
         }

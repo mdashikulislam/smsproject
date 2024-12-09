@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Frontend;
 
+use App\Constants\AppConstants;
 use App\Models\Coupon;
 use App\Models\CouponHistory;
 use App\Models\Setting;
@@ -46,7 +47,7 @@ class Services extends Component
     }
     public function mount()
     {
-        $this->seo = getSeo(SERVICES_SLUG);
+        $this->seo = getSeo(AppConstants::SERVICES_SLUG);
         $this->currentUser = auth()->user();
         $this->setting = Setting::first();
         $this->refreshInitData();
@@ -121,7 +122,7 @@ class Services extends Component
     }
     public function render()
     {
-        $services = SingleService::where('status', STATUS_ENABLED);
+        $services = SingleService::where('status', AppConstants::STATUS_ENABLED);
         if (!empty($this->search)) {
             $servicesWithSearch = clone $services;
             $servicesWithSearch = $servicesWithSearch->where('name', 'LIKE', "%{$this->search}%")->orderByDesc('is_other_site')->orderByDesc('id')->get();

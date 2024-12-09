@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Frontend;
 
+use App\Constants\AppConstants;
 use App\Models\Coupon;
 use App\Models\CouponHistory;
 use App\Models\Setting;
@@ -25,7 +26,7 @@ class Pricing extends Component
     public $network = '';
     public $purchaseData = [];
     public function mount() {
-        $this->seo = getSeo(PRICING_SLUG);
+        $this->seo = getSeo(AppConstants::PRICING_SLUG);
         $this->currentUser = auth()->user();
         $this->setting = Setting::first();
         $this->refreshInitData();
@@ -116,7 +117,7 @@ class Pricing extends Component
             'Accept' => 'application/json',
         ])->withBasicAuth(env('SIM_API_USERNAME'), env('SIM_API_PASSWORD'))
             ->asForm()->post($apiUrl, [
-                'qty' => DEFAULT_SIM_QUANTITY,
+                'qty' => AppConstants::DEFAULT_SIM_QUANTITY,
                 'duration' => $this->package['duration'],
             ]);
 
@@ -135,13 +136,13 @@ class Pricing extends Component
                     $sim = new Sim();
                     $sim->imsi = $simData['imsi'];
                     $sim->phone_number = $simData['phone_no'];
-                    $sim->type = SIM_TYPE_PAID;
+                    $sim->type = AppConstants::SIM_TYPE_PAID;
                     $sim->network_type = $simData['network_type'];
                     $sim->save();
                 }
                 $userSim = new UserSim();
                 $userSim->user_id = $this->currentUser->id;
-                $userSim->sim_cost = @$this->setting->sim_cost ?? DEFAULT_SIM_COST;
+                $userSim->sim_cost = @$this->setting->sim_cost ?? AppConstants::DEFAULT_SIM_COST;
                 $userSim->sim_id = $sim->id;
                 $userSim->start_date = $simData['start_date'];
                 $userSim->end_date = $simData['end_date'];

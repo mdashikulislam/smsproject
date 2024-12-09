@@ -32,7 +32,8 @@
         "files": [
             "app/Helpers/coreConstants.php",
             "app/Helpers/adminHelper.php",
-            "app/Helpers/userHelper.php"
+            "app/Helpers/userHelper.php",
+            "app/Constants/AppConstants.php"
         ]
     },
     "autoload-dev": {

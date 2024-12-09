@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Constants\AppConstants;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,7 @@ class RolePermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        foreach (DEFAULT_ROLE as $data){
+        foreach (AppConstants::DEFAULT_ROLE as $data){
             Role::firstOrCreate([
                 'name' => $data,
             ],

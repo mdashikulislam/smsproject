@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Frontend;
 
+use App\Constants\AppConstants;
 use App\Models\Sim;
 use Livewire\Component;
 
@@ -9,7 +10,7 @@ class FreeSms extends Component
 {
     public $seo = [];
     public function mount() {
-        $this->seo = getSeo(FREE_SMS_SLUG);
+        $this->seo = getSeo(AppConstants::FREE_SMS_SLUG);
     }
     public function render()
     {

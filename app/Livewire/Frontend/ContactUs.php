@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Frontend;
 
+use App\Constants\AppConstants;
 use App\Models\Contact;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -18,7 +19,7 @@ class ContactUs extends Component
     public $seo = [];
     public function mount()
     {
-        $this->seo = getSeo(PRICING_SLUG);
+        $this->seo = getSeo(AppConstants::PRICING_SLUG);
         $this->name = '';
         $this->email = '';
         $this->message = '';

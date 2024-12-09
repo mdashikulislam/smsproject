@@ -1,4 +1,5 @@
 <?php
+use App\Constants\AppConstants;
 function calculatePriceWithDiscount($price, $discount)
 {
     $discount = ($price * $discount) / 100;
@@ -8,7 +9,7 @@ function calculatePriceWithDiscount($price, $discount)
 function getCouponTypeDropdown($selected = '')
 {
     $html ='';
-    foreach (COUPON_TYPE_ARRAY as $key => $value) {
+    foreach (AppConstants::COUPON_TYPE_ARRAY as $key => $value) {
         $html .='<option value="'.$value.'"';
         if ($selected == $value) {
             $html .='selected';
@@ -20,7 +21,7 @@ function getCouponTypeDropdown($selected = '')
 function getCouponUseTypeDropdown($selected = '')
 {
     $html ='';
-    foreach (COUPON_USE_TYPE_ARRAY as $key => $value) {
+    foreach (AppConstants::COUPON_USE_TYPE_ARRAY as $key => $value) {
         $html .='<option value="'.$value.'"';
         if ($selected == $value) {
             $html .='selected';
@@ -32,7 +33,7 @@ function getCouponUseTypeDropdown($selected = '')
 function getCouponEligibleDropdown($selected = '')
 {
     $html ='';
-    foreach (COUPON_ELIGIBLE_ARRAY as $key => $value) {
+    foreach (AppConstants::COUPON_ELIGIBLE_ARRAY as $key => $value) {
         $html .='<option value="'.$value.'"';
         if ($selected == $value) {
             $html .='selected';

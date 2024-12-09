@@ -1,8 +1,9 @@
 <?php
+use App\Constants\AppConstants;
 function  getYesNoDropdown($selected = 0)
 {
     $html = '';
-    foreach (YES_NO_ARRAY as $key => $value) {
+    foreach (AppConstants::YES_NO_ARRAY as $key => $value) {
         $html .='<option value="'.$key.'"';
         if ($selected == $key) {
             $html .='selected';
@@ -15,7 +16,7 @@ function  getYesNoDropdown($selected = 0)
 function getStatusDropdown($selected = 0)
 {
     $html = '';
-    foreach (STATUS_ARRAY as $key => $value) {
+    foreach (AppConstants::STATUS_ARRAY as $key => $value) {
         $html .='<option value="'.$key.'"';
         if ($selected == $key) {
             $html .='selected';
@@ -27,7 +28,7 @@ function getStatusDropdown($selected = 0)
 function getDatatableShowItemDropdown($selected = 0)
 {
     $html = '<option value="" disabled selected>Show Entries</option>';
-    foreach (DATATABLE_SHOW_ITEM_ARRAY as $key => $value) {
+    foreach (AppConstants::DATATABLE_SHOW_ITEM_ARRAY as $key => $value) {
         $html .='<option value="'.$value.'"';
         if ($selected == $value) {
             $html .='selected';

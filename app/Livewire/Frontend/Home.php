@@ -2,13 +2,14 @@
 
 namespace App\Livewire\Frontend;
 
+use App\Constants\AppConstants;
 use Livewire\Component;
 
 class Home extends Component
 {
     public $seo = [];
     public function mount() {
-        $this->seo = getSeo(HOME_SLUG);
+        $this->seo = getSeo(AppConstants::HOME_SLUG);
     }
     public function render()
     {

@@ -5,7 +5,7 @@ namespace App\Livewire\Frontend;
 
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
-
+use App\Constants\AppConstants;
 class Reload extends Component
 {
     public $amount;
@@ -18,7 +18,7 @@ class Reload extends Component
         'amount.min' => 'Minimum reload amount is £1',
     ];
     public function mount() {
-        $this->seo = getSeo(RELOAD_SLUG);
+        $this->seo = getSeo(AppConstants::RELOAD_SLUG);
         $this->amount = 0;
 
     }
