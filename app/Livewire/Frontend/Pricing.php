@@ -109,7 +109,8 @@ class Pricing extends Component
     public function purchase()
     {
         if ((float)$this->currentUser->available_balance < (float)$this->finalPrice){
-             session()->flash('error', 'You don\'t have enough balance to buy this package. Please reload balance.');
+             session()->flash('error', 'Balance is low. Please reload.');
+             $this->redirect(route('reload'),true);
              return;
         }
 

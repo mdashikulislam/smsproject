@@ -22,7 +22,7 @@
         })
     });
     window.addEventListener('toast',event =>{
-        const Toast = Swal.mixin({
+         Swal.mixin({
             toast: true,
             position: "top-end",
             showConfirmButton: false,
@@ -32,12 +32,47 @@
                 toast.onmouseenter = Swal.stopTimer;
                 toast.onmouseleave = Swal.resumeTimer;
             }
-        });
-        Toast.fire({
+        }).fire({
             icon: event.detail.type,
             title: event.detail.message
         });
     });
+</script>
+<script>
+    document.addEventListener('livewire:navigated', (event) => {
+        @if(session()->has('success'))
+            Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            }).fire({
+                icon: 'success',
+                title: '{{session()->get('success')}}'
+            });
+        @endif
+        @if(session()->has('error'))
+            Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            }).fire({
+                icon: 'error',
+                title: '{{session()->get('error')}}'
+            });
+        @endif
+    },{ once: true });
 </script>
 @stack('script')
 
