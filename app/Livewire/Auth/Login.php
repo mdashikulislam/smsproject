@@ -28,7 +28,7 @@ class Login extends Component
         if(auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
             $user = User::where(["email" => $this->email])->first();
             auth()->login($user, $this->remember_me);
-            if (auth()->user()->hasRole(\USER)){
+            if (auth()->user()->hasRole(AppConstants::USER)){
                 if (Session::has('url.intended')){
                     $route = Session::get('url.intended');
                     Session::forget('url.intended');

@@ -138,3 +138,20 @@ function callAPI($method, $url, $data)
     curl_close($curl);
     return $result;
 }
+
+function updateBalance()
+{
+
+}
+function couponUpdate()
+{
+
+}
+
+function createTransaction($data)
+{
+    if (empty(@$data['trx_id'])){
+        $data['trx_id'] = uniqid();
+    }
+    return \App\Models\Transaction::create($data);
+}

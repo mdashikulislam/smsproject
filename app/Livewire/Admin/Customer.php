@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Constants\AppConstants;
 use App\Models\User;
 use App\Traits\CustomDatatable;
 use Livewire\Attributes\Layout;
@@ -20,7 +21,7 @@ class Customer extends Component
     {
         return User::with('roles')
             ->whereHas('roles',function ($q){
-                $q->where('name',\USER);
+                $q->where('name',AppConstants::USER);
             })
             ->orderBy($this->sortBy,$this->orderBy)
             ->paginate($this->perPage);

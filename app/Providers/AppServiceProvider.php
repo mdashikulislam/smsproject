@@ -24,9 +24,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-//        if (app()->environment('local')) {
-//            URL::forceScheme('https');
-//        }
+        if (!app()->environment('local')) {
+            URL::forceScheme('https');
+        }
 
         Builder::macro('search', function ($field, $string) {
             return $string ? $this->where($field, 'like', '%' . $string . '%') : $this;

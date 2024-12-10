@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Livewire\Frontend;
-
-
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use App\Constants\AppConstants;

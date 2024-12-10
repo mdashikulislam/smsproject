@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\AccessControl;
 
+use App\Constants\AppConstants;
 use App\Models\User;
 use App\Traits\CustomDatatable;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,7 @@ class ManageAdmin extends Component
     protected $listeners = ['delete'];
     public function mount()
     {
-        $this->defaultRole = \Spatie\Permission\Models\Role::where('name','!=',\USER)->first();
+        $this->defaultRole = \Spatie\Permission\Models\Role::where('name','!=',AppConstants::USER)->first();
         $this->state = [
             'name'=>'',
             'email'=>'',
@@ -111,7 +112,7 @@ class ManageAdmin extends Component
     {
         return User::with('roles')
             ->whereHas('roles',function ($q){
-                $q->where('name','!=',\USER);
+                $q->where('name','!=',AppConstants::USER);
             })
             ->when(!empty($this->search),function ($q){
                 $q->where(function ($query){

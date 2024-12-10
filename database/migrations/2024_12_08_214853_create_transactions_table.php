@@ -11,11 +11,11 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('trx_id')->nullable();
-            $table->enum('payment_type', ['Cash In', 'Cash Out'])->nullable();
+            $table->enum('payment_type', \App\Constants\AppConstants::PAYMENT_TYPE)->nullable();
             $table->decimal('amount', 10, 2)->default(0);
             $table->text('purpose')->nullable();
-            $table->enum('status', ['Pending', 'Accept','Reject'])->default('Pending');
-            $table->enum('payment_method', ['Paypal', 'Crypto','Wallet','Stripe'])->default('Wallet');
+            $table->enum('status', \App\Constants\AppConstants::TRANSACTION_STATUS_ARRAY)->default(\App\Constants\AppConstants::PENDING);
+            $table->enum('payment_method',\App\Constants\AppConstants::PAYMENT_METHODS_ARRAY)->default(\App\Constants\AppConstants::WALLET);
             $table->tinyInteger('is_premium')->default(0);
             $table->timestamps();
         });

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{asset('admin/assets/fonts/feather-font/css/iconfont.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/flag-icon-css/css/flag-icon.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo2/style.css')}}">
-    <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{asset('favicon.ico')}}" />
 </head>
 <body>
 <div class="main-wrapper">

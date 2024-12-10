@@ -7,7 +7,9 @@ use App\Models\Coupon;
 use App\Models\CouponHistory;
 use App\Models\Setting;
 use App\Models\Sim;
+use App\Models\User;
 use App\Models\UserSim;
+use App\Models\WalletHistory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -110,8 +112,8 @@ class Pricing extends Component
              session()->flash('error', 'You don\'t have enough balance to buy this package. Please reload balance.');
              return;
         }
-        $apiUrl = makeSimApiUrl('buy-sim.php');
 
+        $apiUrl = makeSimApiUrl('buy-sim.php');
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
@@ -122,15 +124,15 @@ class Pricing extends Component
             ]);
 
         if (!$response->successful()) {
-            \session()->put('error', 'Something went wrong, please try again later.');
+            \session()->flash('error', 'Something went wrong, please try again later.');
             return;
         }
-
         $responseData = $response->json();
         if (isset($responseData['data'][0])) {
             $simData = $responseData['data'][0];
             \DB::beginTransaction();
             try {
+                //Sim Create to table
                 $sim = Sim::where('imsi', $simData['imsi'])->first();
                 if (empty($sim)) {
                     $sim = new Sim();
@@ -140,6 +142,7 @@ class Pricing extends Component
                     $sim->network_type = $simData['network_type'];
                     $sim->save();
                 }
+                //Sim Assign To user
                 $userSim = new UserSim();
                 $userSim->user_id = $this->currentUser->id;
                 $userSim->sim_cost = @$this->setting->sim_cost ?? AppConstants::DEFAULT_SIM_COST;
@@ -148,12 +151,45 @@ class Pricing extends Component
                 $userSim->end_date = $simData['end_date'];
                 $userSim->amount = $this->finalPrice;
                 $userSim->save();
+
+                //Coupon
+                if (!empty($this->activeCoupon)){
+                    CouponHistory::create([
+                        'user_id' => $this->currentUser->id,
+                        'coupon_id' => $this->activeCoupon->id,
+                    ]);
+                    Coupon::where('id',$this->activeCoupon->id)->increment('uses');
+                }
+                User::where('id',$this->currentUser->id)->update([
+                    'available_balance' => (double)$this->currentUser->available_balance - (double)$this->finalPrice,
+                    'withdraw_balance' => (double)$this->currentUser->withdraw_balance + (double)$this->finalPrice
+                ]);
+                WalletHistory::create([
+                    'user_id' => $this->currentUser->id,
+                    'old_balance' => (double)$this->currentUser->available_balance,
+                    'present_balance' => (double)$this->currentUser->available_balance - (double)$this->finalPrice,
+                    'cost' => $this->finalPrice,
+                    'description' => 'Purchase '.$this->package['name'].' Package',
+                ]);
+                //Create Transaction
+                createTransaction([
+                    'user_id' => $this->currentUser->id,
+                    'amount' => $this->finalPrice,
+                    'payment_type'=>AppConstants::PURCHASE,
+                    'purpose'=>'Purchase '.$this->package['name'].' Package',
+                    'status'=>AppConstants::ACCEPT,
+                    'payment_method'=>AppConstants::WALLET,
+                ]);
                 \DB::commit();
-                \session()->put('success', 'Your purchase was successful');
+                $this->dispatch('balanceUpdated');
+                \session()->flash('success', 'Your purchase was successful');
             } catch (\Exception $exception) {
                 \DB::rollBack();
-                \session()->put('error', $exception->getMessage());
+                \session()->flash('error', $exception->getMessage());
             }
+        }else{
+            \session()->flash('error', $responseData['message']);
+            return;
         }
         return;
     }

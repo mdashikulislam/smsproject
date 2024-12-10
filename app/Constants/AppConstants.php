@@ -75,4 +75,24 @@ class AppConstants
 
     public  const YES_NO_ARRAY = ['No', 'Yes'];
     public const DEFAULT_ROLE = [self::ADMIN,self::USER,self::DEVELOPER];
+    public const CASH_IN = 'Cash In';
+    public const CASH_OUT = 'Cash Out';
+    public const PURCHASE = 'Purchase';
+    public const PAYMENT_TYPE = [self::CASH_IN,self::CASH_OUT,self::PURCHASE];
+    public const PENDING = 'Pending';
+    public const ACCEPT = 'Accept';
+    public const REJECT = 'Reject';
+    public const  TRANSACTION_STATUS_ARRAY = [self::PENDING,self::ACCEPT,self::REJECT];
+
+    public const PAYPAL = 'Paypal';
+    public const CRYPTO = 'Crypto';
+    public const WALLET = 'Wallet';
+    public const STRIPE = 'Stripe';
+    public const PAYMENT_METHODS_ARRAY = [
+        self::PAYPAL,
+        self::CRYPTO,
+        self::WALLET,
+        self::STRIPE,
+    ];
+
 }
