@@ -189,7 +189,7 @@ class Pricing extends Component
                 \session()->flash('error', $exception->getMessage());
             }
         }else{
-            \session()->flash('error', $responseData['message']);
+            \session()->flash('error', @$responseData['message']);
             return;
         }
         return;
