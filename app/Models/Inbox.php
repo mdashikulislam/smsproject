@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Inbox extends Model
 {
     protected $fillable = ['hash_id','from_no','message','route','rec_time','imsi','phone_number','is_deleted'];
+
+    public function sim()
+    {
+        return $this->hasOne(Sim::class,'imsi','imsi');
+    }
 }

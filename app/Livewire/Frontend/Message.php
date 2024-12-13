@@ -10,7 +10,6 @@ use Livewire\Component;
 class Message extends Component
 {
     public $seo = [];
-
     public function mount()
     {
         $this->seo = getSeo(AppConstants::MESSAGE_SLUG);

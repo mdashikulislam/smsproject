@@ -1,6 +1,17 @@
 <div class="card-wrap" wire:poll.visible.5s>
     <div class="d-flex justify-content-between align-items-center">
-        <h3 class="title">Messages</h3>
+        <div>
+            <h3 class="title">Messages</h3>
+            <div>
+                <select wire:model.live="filter" class="form-control">
+                    <option value="">All</option>
+                    @forelse($phoneNumbers as $phoneNumber)
+                        <option value="{{$phoneNumber}}">{{$phoneNumber}}</option>
+                    @empty
+                    @endforelse
+                </select>
+            </div>
+        </div>
         <div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" wire:model="duration" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="5min">
@@ -46,6 +57,9 @@
                     </td>
                 </tr>
             @empty
+                <tr>
+                    <td colspan="4" class="text-center">No message found</td>
+                </tr>
             @endforelse
             </tbody>
         </table>
