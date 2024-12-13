@@ -14,19 +14,23 @@
         </div>
         <div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" wire:model="duration" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="5min">
+                <input class="form-check-input" wire:model="duration" type="radio" name="inlineRadioOptions" id="inlineRadioall" value="all">
+                <label class="form-check-label" for="inlineRadioall">All</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" wire:model="duration" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="5">
                 <label class="form-check-label" for="inlineRadio1">5 Min</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" wire:model="duration" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="10min">
+                <input class="form-check-input" wire:model="duration" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="10">
                 <label class="form-check-label" for="inlineRadio2">10 Min</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" wire:model="duration" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="15min">
+                <input class="form-check-input" wire:model="duration" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="15">
                 <label class="form-check-label" for="inlineRadio3">15 Min</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" wire:model="duration" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="20min">
+                <input class="form-check-input" wire:model="duration" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="20">
                 <label class="form-check-label"  for="inlineRadio4">20 Min</label>
             </div>
             <div class="form-check form-check-inline">
@@ -66,3 +70,22 @@
         {{$inboxes->links(data: ['scrollTo' => false])}}
     </div>
 </div>
+@script
+<script>
+    document.addEventListener('confirm-delete',function (){
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.dispatch('confirmDelete')
+            }
+        });
+    });
+</script>
+@endscript

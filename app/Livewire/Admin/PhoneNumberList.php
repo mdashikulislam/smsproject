@@ -20,7 +20,8 @@ class PhoneNumberList extends Component
     public function getData()
     {
         return Sim::with('userSim')
-            ->orderBy($this->sortBy,$this->orderBy)->paginate($this->perPage);
+            ->orderBy($this->sortBy,$this->orderBy)
+            ->paginate($this->perPage);
     }
 
     #[Layout(ADMIN_LAYOUT)]

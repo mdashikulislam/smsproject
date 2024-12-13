@@ -17,9 +17,12 @@ class Message extends Component
 
     public function getSimsProperty()
     {
-        return Sim::select('imsi')->with('userSim')->whereHas('userSim',function($query){
-            $query->where('user_id',auth()->user()->id);
-        })->pluck('imsi')->unique();
+        return Sim::select('imsi')
+            ->with('userSim')
+            ->whereHas('userSim',function($query){
+                $query->where('user_id',auth()->user()->id);
+                $query ->where('is_user_delete','No');
+            })->pluck('imsi')->unique();
     }
     public function render()
     {
