@@ -60,7 +60,7 @@ class AppConstants
     public const FREE_SMS_SLUG = 'free-sms';
     public const CONTACT_US_SLUG = 'contact-us';
     public const SERVICES_SLUG = 'services';
-    public const PRICING_SLUG = 'pricing';
+    public const PRICING_SLUG = 'plans';
     public const RELOAD_SLUG = 'reload';
     public const NUMBER_LIST_SLUG = 'number-list';
     public const MESSAGE_SLUG = 'messages';

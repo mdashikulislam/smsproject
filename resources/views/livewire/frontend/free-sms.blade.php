@@ -1,15 +1,18 @@
 <section class="section section-padding-2 bg-color-dark">
     <div class="container">
         <div class="section-heading heading-light-left">
-            <span class="subtitle">Free SMS</span>
             <h2 class="title">Free SMS UK Phone Numbers</h2>
+            <span class="subtitle">We change the free numbers every month to new ones</span>
             <p class="opacity-50">
-                Nulla facilisi. Nullam in magna id dolor blandit
-                rutrum eget vulputate augue sed eu imperdiet.
+                Please note the free numbers are not exclusive to you
+                Messages show below are viewable by everyone
+                <span class="d-block">
+                    <a wire:navigate href="{{route('pricing')}}">For your own new private SMS numbers and messages click here</a>
+                </span>
             </p>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-12">
+            <div class="col-lg-3 col-12">
                 <ul class="freenumber-list">
                     @forelse($freeSims as $sim)
                     <li class="sal-animate" data-sal="slide-up" data-sal-duration="800" data-sal-delay="100">
@@ -29,7 +32,7 @@
                     @endforelse
                 </ul>
             </div>
-            <div class="col-lg-8 col-12">
+            <div class="col-lg-9 col-12">
                 @livewire('frontend.component.inbox',['imsi'=>$freeSims->pluck('imsi')->unique()->toArray()])
             </div>
         </div>

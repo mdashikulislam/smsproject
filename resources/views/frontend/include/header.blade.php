@@ -44,7 +44,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="{{$currentRoute == 'pricing' ? 'active':''}}" wire:navigate href="{{route('pricing')}}"> Pricing </a>
+                                <a class="{{$currentRoute == 'pricing' ? 'active':''}}" wire:navigate href="{{route('pricing')}}"> Plans </a>
                             </li>
                             <li>
                                 <a class="{{$currentRoute == 'services' ? 'active':''}}" wire:navigate href="{{route('services')}}">

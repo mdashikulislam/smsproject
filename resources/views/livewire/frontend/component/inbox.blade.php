@@ -1,6 +1,6 @@
 <div class="card-wrap" wire:poll.visible.5s>
     <div class="d-flex justify-content-between align-items-center">
-        <div>
+        <div class="d-flex align-items-center gap-2">
             <h3 class="title">Messages</h3>
             <div>
                 <select wire:model.live="filter" class="form-control">
