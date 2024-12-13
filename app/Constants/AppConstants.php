@@ -62,6 +62,8 @@ class AppConstants
     public const SERVICES_SLUG = 'services';
     public const PRICING_SLUG = 'pricing';
     public const RELOAD_SLUG = 'reload';
+    public const NUMBER_LIST_SLUG = 'number-list';
+    public const MESSAGE_SLUG = 'message';
     public const COUPON_USE_TYPE_ARRAY = ['Single', 'Multiple'];
     public const COUPON_TYPE_ARRAY = ['Fixed', 'Percentage'];
 

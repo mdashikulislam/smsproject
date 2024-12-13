@@ -10,6 +10,8 @@ Route::get(AppConstants::SERVICES_SLUG,\App\Livewire\Frontend\Services::class)->
 Route::get(AppConstants::CONTACT_US_SLUG,\App\Livewire\Frontend\ContactUs::class)->name('contact-us');
 Route::middleware('auth')->group(function (){
     Route::get(AppConstants::RELOAD_SLUG,\App\Livewire\Frontend\Reload::class)->name('reload');
+    Route::get(AppConstants::NUMBER_LIST_SLUG,\App\Livewire\Frontend\NumberList::class)->name('number-list');
+    Route::get(AppConstants::MESSAGE_SLUG,\App\Livewire\Frontend\Message::class)->name('message');
 });
 
 

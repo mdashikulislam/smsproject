@@ -20,7 +20,7 @@ class Inbox extends Component
             dd($this->duration);
         }
     }
-    public function mount($imsi)
+    public function mount($imsi = [])
     {
         $this->imsi = $imsi;
     }

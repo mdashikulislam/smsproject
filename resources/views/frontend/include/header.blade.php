@@ -74,6 +74,11 @@
                                     </li>
                                 @endif
                             @else
+                                <li>
+                                    <a class="{{$currentRoute == 'number-list' ? 'active':''}}" wire:navigate href="{{route('number-list')}}">
+                                        My Number
+                                    </a>
+                                </li>
                                 @can('dashboard')
                                 <li class="auth-btn">
                                     <a href="{{route('admin.dashboard')}}">
