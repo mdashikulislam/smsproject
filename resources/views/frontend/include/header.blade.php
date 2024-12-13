@@ -54,7 +54,6 @@
                             <li>
                                 <a class="{{$currentRoute == 'contact-us' ? 'active':''}}" wire:navigate href="{{route('contact-us')}}">Contact</a>
                             </li>
-
                             @guest
                                 @if(Route::has('login'))
                                     <li class="auth-btn">
@@ -77,6 +76,11 @@
                                 <li>
                                     <a class="{{$currentRoute == 'number-list' ? 'active':''}}" wire:navigate href="{{route('number-list')}}">
                                         My Number
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="{{$currentRoute == 'messages' ? 'active':''}}" wire:navigate href="{{route('messages')}}">
+                                        Messages
                                     </a>
                                 </li>
                                 @can('dashboard')

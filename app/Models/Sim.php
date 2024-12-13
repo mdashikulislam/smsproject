@@ -15,4 +15,9 @@ class Sim extends Model
     {
         return getNetworkType($this->network_type);
     }
+
+    public function inboxes()
+    {
+        return $this->hasMany(Inbox::class,'imsi','imsi');
+    }
 }

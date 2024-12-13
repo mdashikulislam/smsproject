@@ -6,7 +6,7 @@
                 <select wire:model.live="filter" class="form-control">
                     <option value="">All</option>
                     @forelse($phoneNumbers as $phoneNumber)
-                        <option value="{{$phoneNumber}}">{{$phoneNumber}}</option>
+                        <option value="{{$phoneNumber->phone_number}}">{{$phoneNumber->phone_number}} ({{$phoneNumber->inboxes_count}})</option>
                     @empty
                     @endforelse
                 </select>

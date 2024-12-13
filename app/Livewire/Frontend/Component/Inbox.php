@@ -66,8 +66,12 @@ class Inbox extends Component
 
     public function getPhoneNumbers()
     {
-        return Sim::whereIn('imsi',$this->imsi)
-            ->pluck('phone_number');
+        return Sim::select('phone_number')
+        ->whereIn('imsi', $this->imsi)
+        ->withCount(['inboxes' => function ($query) {
+            $query->where('is_deleted', 0);
+        }])
+            ->get();
     }
     public function render()
     {
